@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Browse Items | Deccan Midwest Supply Co.</title>
+  <style>
+    :root {
+      --navy: #10233d;
+      --plum: #3d1f45;
+      --gold: #c9a968;
+      --ivory: #fdfbf7;
+      --card: #fffdfb;
+      --line: rgba(16,35,61,.12);
+      --muted: #5a6470;
+      --ink: #171d28;
+      --shadow: 0 18px 42px rgba(16,35,61,.08);
+      --max: 1280px;
+      --space: 28px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--ink);
+      background: linear-gradient(180deg, #f9f4ef 0%, #fdfbf7 18%, #f8f4ee 100%);
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button, input, select { font: inherit; }
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 var(--space); }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(16,35,61,.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .topbar-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 18px var(--space);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: white;
+      letter-spacing: .08em;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    .brand img { width: 42px; height: 42px; }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .cta-btn, .quote-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 800;
+      transition: all .2s ease;
+    }
+    .cta-btn {
+      background: var(--gold);
+      color: var(--navy);
+      border: 1px solid rgba(201,169,104,.5);
+    }
+    .quote-pill {
+      background: rgba(255,255,255,.06);
+      color: white;
+      border: 1px solid rgba(255,255,255,.12);
+    }
+
+    .page-hero {
+      background: linear-gradient(135deg, rgba(61,31,69,.96), rgba(16,35,61,.92));
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(201,169,104,.28), transparent 40%);
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 72px var(--space) 30px;
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 28px;
+      align-items: center;
+    }
+    .eyebrow {
+      margin: 0 0 16px;
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      font-weight: 900;
+    }
+    .hero-copy h1 {
+      margin: 0;
+      font-size: clamp(3rem, 6vw, 5rem);
+      line-height: .94;
+      letter-spacing: -.06em;
+    }
+    .hero-copy p {
+      margin-top: 18px;
+      color: rgba(255,255,255,.8);
+      line-height: 1.8;
+      max-width: 740px;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 14px 20px;
+      font-weight: 800;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all .2s ease;
+    }
+    .button.primary {
+      background: var(--gold);
+      color: var(--navy);
+    }
+    .button.secondary {
+      background: rgba(255,255,255,.05);
+      border-color: rgba(255,255,255,.12);
+      color: white;
+    }
+    .hero-panel {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 26px;
+      padding: 26px 20px;
+      box-shadow: 0 20px 45px rgba(0,0,0,.12);
+    }
+    .panel-top span {
+      display: block;
+      color: var(--gold);
+      font-size: 10px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+    .panel-top strong {
+      display: block;
+      font-size: 1.7rem;
+      line-height: 1.2;
+    }
+    .stat-grid {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(120px, 1fr));
+      gap: 12px;
+    }
+    .stat-box {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 16px;
+      padding: 16px 14px;
+    }
+    .stat-box strong {
+      display: block;
+      font-size: 1.6rem;
+    }
+    .stat-box span {
+      display: block;
+      margin-top: 6px;
+      color: rgba(255,255,255,.7);
+      letter-spacing: .14em;
+      font-size: 10px;
+      text-transform: uppercase;
+    }
+
+    .catalog-shell {
+      padding: 32px 0 72px;
+    }
+    .search-wrap {
+      margin-bottom: 22px;
+    }
+    .search-box {
+      position: relative;
+      max-width: 100%;
+    }
+    .search-box input {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.7);
+      border-radius: 18px;
+      padding: 20px 54px 20px 52px;
+      font-size: 1rem;
+      color: var(--ink);
+      outline: none;
+      box-shadow: var(--shadow);
+    }
+    .search-icon {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      font-size: 1.15rem;
+    }
+    .search-clear {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-weight: 700;
+      padding: 8px 10px;
+    }
+
+    .category-nav {
+      margin-bottom: 30px;
+    }
+    .category-nav-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+    .category-nav-header h2 {
+      margin: 0;
+      font-size: clamp(1.4rem, 2vw, 2rem);
+      letter-spacing: -.04em;
+    }
+    .category-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .category-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.9);
+      color: var(--navy);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all .2s ease;
+    }
+    .category-chip.active {
+      background: rgba(61,31,69,.06);
+      border-color: rgba(61,31,69,.24);
+      color: var(--plum);
+    }
+    .category-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 7px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(201,169,104,.12);
+      color: var(--plum);
+      font-size: 12px;
+    }
+
+    .catalog-layout {
+      display: grid;
+      grid-template-columns: 300px minmax(0, 1fr);
+      gap: 26px;
+      align-items: start;
+    }
+    .filters-panel {
+      background: rgba(255,255,255,.78);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 20px 18px;
+      position: sticky;
+      top: 94px;
+      max-height: calc(100vh - 112px);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+    .filters-panel h3 {
+      margin: 0 0 18px;
+      font-size: 1rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--navy);
+    }
+    .filter-group {
+      margin-bottom: 18px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+    .filter-group:last-child { border-bottom: 0; margin-bottom: 0; padding-bottom: 0; }
+    .filter-group label {
+      display: block;
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+      font-weight: 800;
+    }
+    .filter-group select {
+      width: 100%;
+      padding: 11px 12px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: white;
+      color: var(--ink);
+    }
+    .filter-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+    .mini-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: var(--navy);
+      color: white;
+      border: 0;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .mini-btn.muted {
+      background: rgba(61,31,69,.08);
+      color: var(--plum);
+    }
+    .quote-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px 16px;
+      background: rgba(255,255,255,.7);
+    }
+    .quote-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .quantity-control, .remove-quote {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 32px;
+      height: 32px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: white;
+      color: var(--navy);
+      font-weight: 900;
+      cursor: pointer;
+    }
+    .quantity-control:hover, .quantity-control:focus-visible {
+      border-color: var(--gold);
+      background: #fffaf0;
+    }
+    .quote-quantity {
+      min-width: 72px;
+      color: var(--plum);
+      font-size: .9rem;
+      font-weight: 800;
+      text-align: center;
+    }
+    .remove-quote {
+      margin-left: 6px;
+      border-color: rgba(160,45,45,.18);
+      color: #9f3030;
+      font-size: 18px;
+    }
+    .remove-quote:hover, .remove-quote:focus-visible {
+      background: #fff1f1;
+      border-color: rgba(160,45,45,.4);
+    }
+    @media (max-width: 620px) {
+      .quote-item { align-items: flex-start; flex-direction: column; }
+      .quote-controls { width: 100%; justify-content: flex-start; }
+    }
+
+    .results-panel {
+      min-width: 0;
+    }
+    .results-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .results-copy {
+      color: var(--muted);
+      font-size: .97rem;
+    }
+    .sort-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,.8);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 14px;
+      color: var(--navy);
+    }
+    .sort-box select {
+      border: 0;
+      background: transparent;
+      color: var(--ink);
+      font-weight: 700;
+      outline: none;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .product-card {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 10px 28px rgba(16,35,61,.04);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .product-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 32px rgba(16,35,61,.08);
+      border-color: rgba(201,169,104,.55);
+    }
+    .product-image {
+      position: relative;
+      aspect-ratio: 1.2 / 1;
+      overflow: hidden;
+      background: linear-gradient(180deg, #eef2f6, #ede8df);
+    }
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .3s ease;
+    }
+    .product-card:hover .product-image img { transform: scale(1.03); }
+    .badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      background: rgba(255,255,255,.86);
+      color: var(--navy);
+      border: 1px solid rgba(16,35,61,.08);
+    }
+    .badge.stocked { background: rgba(33,76,58,.08); color: #1f5e43; }
+    .badge.order { background: rgba(201,169,104,.12); color: var(--navy); }
+    .badge.custom { background: rgba(61,31,69,.08); color: var(--plum); }
+
+    .product-body {
+      padding: 18px 18px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+    }
+    .category-label {
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-weight: 900;
+    }
+    .product-name {
+      margin: 0;
+      font-size: 1.25rem;
+      line-height: 1.25;
+      letter-spacing: -.04em;
+    }
+    .sku {
+      color: var(--muted);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .spec-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+    .spec-list li::before {
+      content: "•";
+      color: var(--gold);
+      margin-right: 8px;
+    }
+    .size-row {
+      color: var(--navy);
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      background: rgba(201,169,104,.08);
+      border: 1px solid rgba(201,169,104,.18);
+      padding: 8px 10px;
+      border-radius: 12px;
+    }
+    .case-note {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: rgba(16,35,61,.04);
+      color: var(--ink);
+      font-size: .78rem;
+      font-weight: 700;
+    }
+    .request-price {
+      color: var(--plum);
+      font-weight: 800;
+      font-size: .83rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-top: auto;
+    }
+    .card-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+    .card-btn {
+      flex: 1 1 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-weight: 800;
+      cursor: pointer;
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--navy);
+    }
+    .card-btn.primary {
+      background: var(--plum);
+      border-color: var(--plum);
+      color: white;
+    }
+    .card-btn.secondary {
+      background: rgba(201,169,104,.12);
+      border-color: rgba(201,169,104,.18);
+      color: var(--navy);
+    }
+    .empty-state {
+      display: none;
+      background: rgba(255,255,255,.8);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    .empty-state.show { display: block; }
+    .empty-state h3 {
+      margin: 0 0 10px;
+      font-size: 1.8rem;
+      letter-spacing: -.04em;
+    }
+    .empty-state p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    @media (max-width: 1040px) {
+      .product-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .catalog-layout { grid-template-columns: 1fr; }
+      .filters-panel {
+        position: static;
+        max-height: none;
+        overflow: visible;
+      }
+    }
+    @media (max-width: 760px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .topbar-inner { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 560px) {
+      .product-grid { grid-template-columns: 1fr; }
+      .category-row { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 8px; }
+      .category-chip { white-space: nowrap; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .button { width: 100%; }
+      .results-top { align-items: flex-start; }
+      .sort-box { width: 100%; justify-content: space-between; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html#home" aria-label="Deccan Midwest Supply Co. home">
+        <img src="./assets/logo-emblem.png" alt="Deccan Midwest Supply Co." />
+        <span>Deccan Midwest Supply Co.</span>
+      </a>
+      <div class="header-actions">
+        <a class="quote-pill" href="#quote-list">Quote List (<span id="quoteCount">0</span>)</a>
+        <a class="cta-btn" href="index.html">Back to Home</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow">Browse Items</p>
+        <h1>Browse Products</h1>
+        <p>Foodservice • Packaging • Facility Essentials</p>
+        <p>Explore commercial supplies for restaurants, hospitality, facilities, distributors, and other business operations.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#quote-list">View Quote List</a>
+          <a class="button secondary" href="#rfq-form">Request a Quote</a>
+        </div>
+      </div>
+
+      <div class="hero-panel">
+        <div class="panel-top">
+          <div>
+            <span>Procurement access</span>
+            <strong>Product catalog ready for quote requests.</strong>
+          </div>
+        </div>
+        <div class="stat-grid" style="margin-top: 16px;">
+          <div class="stat-box"><strong>10</strong><span>Categories</span></div>
+          <div class="stat-box"><strong>24h</strong><span>Quote response</span></div>
+          <div class="stat-box"><strong>1000+</strong><span>SKUs</span></div>
+          <div class="stat-box"><strong>5–10d</strong><span>Lead time</span></div>
+        </div>
+        <a class="button primary" href="products.html#catalog" style="width:100%; margin-top: 18px;">Browse by Categories</a>
+      </div>
+    </div>
+  </section>
+
+  <main class="catalog-shell">
+    <div class="container">
+      <div class="search-wrap">
+        <label class="search-box" aria-label="Search products">
+          <span class="search-icon">⌕</span>
+          <input id="searchInput" type="search" placeholder="Search by product name, SKU, material, size or category…" />
+          <button id="clearSearch" class="search-clear" type="button" aria-label="Clear search">Clear</button>
+        </label>
+      </div>
+
+      <div id="catalog-anchor" class="catalog-layout">
+        <aside class="filters-panel" aria-label="Product filters">
+          <h3>Filters</h3>
+
+          <div class="filter-group">
+            <label for="filterCategory">Category</label>
+            <select id="filterCategory">
+              <option value="all">All products</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="filterSubcategory">Subcategory</label>
+            <select id="filterSubcategory">
+              <option value="all">All subcategories</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="filterMaterial">Material</label>
+            <select id="filterMaterial">
+              <option value="all">All materials</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="filterSize">Size / Capacity</label>
+            <select id="filterSize">
+              <option value="all">All sizes</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="filterColor">Color</label>
+            <select id="filterColor">
+              <option value="all">All colors</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="filterAvailability">Availability</label>
+            <select id="filterAvailability">
+              <option value="all">All availability</option>
+              <option value="stocked">Stocked</option>
+              <option value="available-to-order">Available to order</option>
+              <option value="custom-special-order">Custom / special order</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="filterPack">Case Pack</label>
+            <select id="filterPack">
+              <option value="all">All pack sizes</option>
+            </select>
+          </div>
+
+          <div class="filter-actions">
+            <button class="mini-btn" id="applyFilters" type="button">Apply</button>
+            <button class="mini-btn muted" id="clearFilters" type="button">Clear</button>
+          </div>
+        </aside>
+
+        <section class="results-panel" aria-live="polite">
+          <div class="results-top">
+            <div class="results-copy" id="resultsSummary">Showing 0–0 of 0 products</div>
+            <label class="sort-box">
+              <span>Sort</span>
+              <select id="sortSelect">
+                <option value="featured">Featured</option>
+                <option value="name-asc">Product Name A–Z</option>
+                <option value="newest">Newest</option>
+                <option value="category">Category</option>
+              </select>
+            </label>
+          </div>
+
+          <div id="productGrid" class="product-grid"></div>
+
+          <div id="emptyState" class="empty-state">
+            <h3>No products match your current filters.</h3>
+            <p>Looking for something specific?</p>
+            <div class="hero-actions" style="justify-content:center; margin-top: 0;">
+              <button class="button primary" type="button" id="emptyClearFilters">Clear Filters</button>
+              <a class="button secondary" href="#rfq-form">Request a Product</a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <section id="quote-list" class="container" style="padding-bottom:40px;">
+    <div style="background: rgba(255,255,255,.8); border:1px solid var(--line); border-radius:24px; padding:24px; box-shadow: var(--shadow);">
+      <h2 style="margin:0 0 18px; font-size: clamp(1.5rem,2vw,2.2rem); letter-spacing:-.04em;">Your Quote List</h2>
+      <div id="quoteListItems" style="display:flex; flex-direction:column; gap:12px;"></div>
+    </div>
+  </section>
+
+  <section id="rfq-form" class="container" style="padding-bottom:80px;">
+    <div style="background: rgba(255,255,255,.8); border:1px solid var(--line); border-radius:24px; padding:24px; box-shadow: var(--shadow);">
+      <h2 style="margin:0 0 24px; font-size: clamp(1.5rem,2vw,2.2rem); letter-spacing:-.04em;">Request for Quote</h2>
+      <form id="rfqForm" style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px;">
+        <label><span style="display:block; margin-bottom:8px; font-weight:700;">Company Name *</span><input required type="text" style="width:100%; padding:12px 14px; border:1px solid var(--line); border-radius:12px;" /></label>
+        <label><span style="display:block; margin-bottom:8px; font-weight:700;">Contact Name *</span><input required type="text" style="width:100%; padding:12px 14px; border:1px solid var(--line); border-radius:12px;" /></label>
+        <label><span style="display:block; margin-bottom:8px; font-weight:700;">Business Email *</span><input required type="email" style="width:100%; padding:12px 14px; border:1px solid var(--line); border-radius:12px;" /></label>
+        <label><span style="display:block; margin-bottom:8px; font-weight:700;">Phone</span><input type="tel" style="width:100%; padding:12px 14px; border:1px solid var(--line); border-radius:12px;" /></label>
+        <label><span style="display:block; margin-bottom:8px; font-weight:700;">Company Website</span><input type="url" style="width:100%; padding:12px 14px; border:1px solid var(--line); border-radius:12px;" /></label>
+        <label><span style="display:block; margin-bottom:8px; font-weight:700;">Industry *</span><input required type="text" style="width:100%; padding:12px 14px; border:1px solid var(--line); border-radius:12px;" /></label>
+        <label><span style="display:block; margin-bottom:8px; font-weight:700;">Delivery ZIP Code *</span><input required type="text" style="width:100%; padding:12px 14px; border:1px solid var(--line); border-radius:12px;" /></label>
+        <label><span style="display:block; margin-bottom:8px; font-weight:700;">Delivery City / State</span><input type="text" style="width:100%; padding:12px 14px; border:1px solid var(--line); border-radius:12px;" /></label>
+        <label style="grid-column:1 / -1;"><span style="display:block; margin-bottom:8px; font-weight:700;">Products Requested</span><textarea rows="4" style="width:100%; padding:12px 14px; border:1px solid var(--line); border-radius:12px; resize:vertical;"></textarea></label>
+        <label><span style="display:block; margin-bottom:8px; font-weight:700;">Quantity / Cases</span><input type="text" style="width:100%; padding:12px 14px; border:1px solid var(--line); border-radius:12px;" /></label>
+        <label><span style="display:block; margin-bottom:8px; font-weight:700;">Purchase Frequency</span><input type="text" style="width:100%; padding:12px 14px; border:1px solid var(--line); border-radius:12px;" /></label>
+        <label><span style="display:block; margin-bottom:8px; font-weight:700;">Estimated Monthly Volume</span><input type="text" style="width:100%; padding:12px 14px; border:1px solid var(--line); border-radius:12px;" /></label>
+        <label><span style="display:block; margin-bottom:8px; font-weight:700;">Current / Desired Delivery Schedule</span><input type="text" style="width:100%; padding:12px 14px; border:1px solid var(--line); border-radius:12px;" /></label>
+        <label style="grid-column:1 / -1;"><span style="display:block; margin-bottom:8px; font-weight:700;">Custom Packaging Requirements</span><textarea rows="3" style="width:100%; padding:12px 14px; border:1px solid var(--line); border-radius:12px; resize:vertical;"></textarea></label>
+        <label style="grid-column:1 / -1;"><span style="display:block; margin-bottom:8px; font-weight:700;">Additional Requirements</span><textarea rows="3" style="width:100%; padding:12px 14px; border:1px solid var(--line); border-radius:12px; resize:vertical;"></textarea></label>
+        <label style="grid-column:1 / -1; display:flex; align-items:center; gap:10px; font-weight:700;"><input type="checkbox" /> I am interested in recurring supply.</label>
+        <div style="grid-column:1 / -1; display:flex; justify-content:flex-start; margin-top:8px;">
+          <button class="button primary" type="submit">Submit Request for Quote</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <script>
+    const categoryMeta = [
+      { id: 'all', label: 'All products', icon: '◎' },
+      { id: 'cups', label: 'Cups, Lids & Drinkware', icon: '☕' },
+      { id: 'takeout', label: 'Food Containers & Takeout', icon: '▣' },
+      { id: 'bags', label: 'Bags & Custom Packaging', icon: '👜' },
+      { id: 'gloves', label: 'Gloves & Protective Apparel', icon: '🧤' },
+      { id: 'tableware', label: 'Cutlery & Tableware', icon: '🍴' },
+      { id: 'wraps', label: 'Wraps, Foil & Food Storage', icon: '📦' },
+      { id: 'paper', label: 'Paper & Janitorial', icon: '🧻' },
+      { id: 'chemicals', label: 'Cleaning Chemicals & Supplies', icon: '🧼' },
+      { id: 'waste', label: 'Waste Management', icon: '♻️' },
+      { id: 'shipping', label: 'Packaging & Shipping', icon: '📦' }
+    ];
+
+    const catalogTree = {
+      cups: {
+        label: 'Cups, Lids & Drinkware',
+        subcategories: [
+          { id: 'hot-cups', name: 'Hot Cups', products: ['Hot Paper Cups', 'Double-Wall Paper Cups', 'Insulated Hot Cups', 'Ripple-Wall Cups', 'Espresso Cups'] },
+          { id: 'cold-cups', name: 'Cold Cups', products: ['Cold Plastic Cups', 'Paper Cold Cups', 'Clear PET Cups', 'Clear PP Cups', 'Translucent Cups'] },
+          { id: 'drink-lids', name: 'Lids', products: ['Hot Cup Lids', 'Flat Cold Cup Lids', 'Dome Cup Lids', 'Straw-Slot Lids', 'Sip-Through Hot Lids', 'Vented Hot Lids'] },
+          { id: 'drink-accessories', name: 'Drinkware Accessories', products: ['Coffee Sleeves', 'Wrapped Straws', 'Unwrapped Straws', 'Jumbo Straws', 'Smoothie Straws', 'Paper Straws', 'Cocktail Straws', 'Coffee Stirrers', '2-Cup Carriers', '4-Cup Carriers'] },
+          { id: 'portion-cups', name: 'Portion Cups', products: ['Plastic Portion Cups', 'Paper Portion Cups', 'Portion Cup Lids'] }
+        ]
+      },
+      takeout: {
+        label: 'Food Containers & Takeout',
+        subcategories: [
+          { id: 'clamshells', name: 'Clamshells', products: ['Foam Clamshell Containers', 'Plastic Clamshell Containers', 'Clear PET Clamshells', 'PP Clamshell Containers', 'Bagasse/Fiber Clamshells', 'Single-Compartment Clamshells', 'Multi-Compartment Clamshells'] },
+          { id: 'takeout-containers', name: 'Takeout Containers', products: ['Rectangular Takeout Containers', 'Round Takeout Containers', 'Black-Base / Clear-Lid Containers', 'Microwaveable PP Containers', 'Hinged Clamshells', 'Compartment Takeout Containers'] },
+          { id: 'meal-prep', name: 'Meal Prep', products: ['Single-Compartment Containers', '2-Compartment Containers', '3-Compartment Containers', 'Meal Prep Containers'] },
+          { id: 'deli', name: 'Deli', products: ['Deli Containers', 'Tamper-Evident Containers', 'Round Deli Containers', 'Rectangular Deli Containers', 'Deli Container Lids'] },
+          { id: 'soup', name: 'Soup', products: ['Soup Containers', 'Soup Container Lids', 'Paper Soup Containers', 'Plastic Soup Containers'] },
+          { id: 'specialty', name: 'Specialty', products: ['Salad Bowls', 'Salad Bowl Lids', 'Sandwich Containers', 'Wrap Containers', 'Catering Containers', 'Aluminum Takeout Containers', 'Takeout Container Lids'] },
+          { id: 'bakery', name: 'Bakery', products: ['Bakery Boxes', 'Cake Boxes', 'Cupcake Containers', 'Cookie Boxes', 'Pie Containers'] },
+          { id: 'pizza', name: 'Pizza', products: ['Pizza Boxes', 'Pizza Slice Boxes'] }
+        ]
+      },
+      bags: {
+        label: 'Bags & Custom Packaging',
+        subcategories: [
+          { id: 'plastic-carryout', name: 'Plastic Carryout', products: ['Thank You T-Shirt Bags', 'Plain T-Shirt Bags', 'Heavy-Duty T-Shirt Bags', 'Merchandise Bags', 'Handle Bags'] },
+          { id: 'restaurant-takeout', name: 'Restaurant Takeout', products: ['Food Takeout Bags', 'Large Carryout Bags', 'Catering Bags'] },
+          { id: 'paper', name: 'Paper', products: ['Brown Kraft SOS Bags', 'White SOS Bags', 'Handled Kraft Bags', 'Handled White Bags', 'Grocery Bags', 'Shopping Bags'] },
+          { id: 'food-bags', name: 'Food Bags', products: ['Produce Bags', 'Bakery Bags', 'Sandwich Bags', 'Bread Bags', 'Bun Bags', 'Food-Grade Poly Bags', 'Ice Bags'] },
+          { id: 'specialty-bags', name: 'Specialty', products: ['Clear Poly Bags', 'Flat Poly Bags', 'Gusseted Poly Bags', 'Resealable Bags'] },
+          { id: 'custom-packaging', name: 'Custom Packaging', products: ['Custom Thank You Bags', 'Custom Logo T-Shirt Bags', 'Custom Restaurant Takeout Bags', 'Custom Paper Bags', 'Custom Handled Bags', 'Custom Printed Food Bags', 'Custom Cartons / Boxes', 'Custom Labels & Stickers'] }
+        ]
+      },
+      gloves: {
+        label: 'Gloves & Protective Apparel',
+        subcategories: [
+          { id: 'gloves', name: 'Gloves', products: ['Blue Nitrile Gloves', 'Black Nitrile Gloves', 'Clear Nitrile Gloves', 'Poly Gloves', 'Embossed Poly Gloves', 'Vinyl Gloves', 'Foodservice Disposable Gloves'] },
+          { id: 'protective-apparel', name: 'Protective Apparel', products: ['Hairnets', 'Bouffant Caps', 'Beard Covers', 'Disposable Aprons', 'Polyethylene Aprons', 'Disposable Gowns', 'Sleeve Covers', 'Shoe Covers'] }
+        ]
+      },
+      tableware: {
+        label: 'Cutlery & Tableware',
+        subcategories: [
+          { id: 'cutlery', name: 'Cutlery', products: ['Forks', 'Knives', 'Teaspoons', 'Tablespoons', 'Soup Spoons', 'Sporks', 'Economy Cutlery', 'Medium-Weight Cutlery', 'Heavyweight Cutlery'] },
+          { id: 'wrapped-cutlery', name: 'Wrapped', products: ['Individually Wrapped Forks', 'Individually Wrapped Knives', 'Individually Wrapped Spoons', 'Wrapped Cutlery Kits', 'Napkin & Cutlery Kits'] },
+          { id: 'alternative-materials', name: 'Alternative Materials', products: ['Wooden Forks', 'Wooden Knives', 'Wooden Spoons', 'Compostable Cutlery Alternatives'] },
+          { id: 'plates', name: 'Plates', products: ['Paper Plates', 'Coated Paper Plates', 'Plastic Plates', 'Fiber Plates', 'Compartment Plates'] },
+          { id: 'bowls', name: 'Bowls', products: ['Paper Bowls', 'Plastic Bowls', 'Fiber Bowls', 'Bowl Lids'] },
+          { id: 'other-tableware', name: 'Other Tableware', products: ['Dinner Napkins', 'Beverage Napkins', 'Dispenser Napkins', 'Placemat Sheets', 'Tray Liners', 'Serving Trays', 'Catering Trays', 'Toothpicks'] }
+        ]
+      },
+      wraps: {
+        label: 'Wraps, Foil & Food Storage',
+        subcategories: [
+          { id: 'foil', name: 'Aluminum Foil', products: ['Standard-Duty Foil Rolls', 'Heavy-Duty Foil Rolls', 'Extra Heavy-Duty Foil', 'Pre-Cut Foil Sheets', 'Pop-Up Foil Sheets'] },
+          { id: 'film', name: 'Film', products: ['Commercial Cling Film', 'Foodservice Plastic Wrap', 'Cutter-Box Film Rolls'] },
+          { id: 'paper-wrap', name: 'Paper', products: ['Parchment Rolls', 'Parchment Sheets', 'Pan Liners', 'Wax Paper', 'Deli Paper', 'Interfolded Deli Sheets', 'Sandwich Wrap Paper'] },
+          { id: 'storage-bags', name: 'Storage Bags', products: ['Sandwich Bags', 'Storage Bags', 'Freezer Bags', 'Zipper Bags', 'Food-Grade Poly Bags', 'Flat Food Bags', 'Gusseted Food Bags', 'Portion Storage Bags'] },
+          { id: 'aluminum-containers', name: 'Aluminum Containers', products: ['Aluminum Steam Table Pans', 'Aluminum Round Containers', 'Aluminum Rectangular Containers', 'Aluminum Loaf Pans', 'Compatible Lids'] }
+        ]
+      },
+      paper: {
+        label: 'Paper & Janitorial',
+        subcategories: [
+          { id: 'paper-towels', name: 'Paper Towels', products: ['Multifold Paper Towels', 'C-Fold Paper Towels', 'Center-Pull Paper Towels', 'Hardwound Roll Towels', 'Kitchen Roll Towels', 'Perforated Rolls'] },
+          { id: 'tissue', name: 'Tissue', products: ['Standard Bathroom Tissue', 'Jumbo Roll Tissue', 'Coreless Bathroom Tissue', 'Facial Tissue'] },
+          { id: 'napkin-systems', name: 'Napkin Systems', products: ['Dispenser Napkins', 'Compatible Dispensers'] },
+          { id: 'wipers', name: 'Wipers', products: ['Foodservice Wipes', 'General-Purpose Wipes', 'Industrial Wipers', 'Microfiber Cloths'] },
+          { id: 'dispensers', name: 'Dispensers', products: ['Paper Towel Dispensers', 'Toilet Tissue Dispensers', 'Center-Pull Dispensers', 'Soap Dispensers', 'Sanitizer Dispensers'] }
+        ]
+      },
+      chemicals: {
+        label: 'Cleaning Chemicals & Supplies',
+        subcategories: [
+          { id: 'cleaning-chemicals', name: 'Cleaning Chemicals', products: ['All-Purpose Cleaner', 'Glass Cleaner', 'Degreaser', 'Heavy-Duty Degreaser', 'Floor Cleaner', 'Restroom Cleaner', 'Toilet Bowl Cleaner', 'Dishwashing Liquid', 'Manual Dish Detergent', 'Commercial Warewashing Products', 'Commercial Sanitizer', 'Stainless Steel Cleaner'] },
+          { id: 'cleaning-tools', name: 'Cleaning Tools', products: ['Microfiber Cloths', 'Scrub Pads', 'Sponges', 'Scouring Pads', 'Cleaning Brushes', 'Bottle Brushes', 'Floor Brushes', 'Spray Bottles', 'Trigger Sprayers', 'Buckets', 'Mop Buckets', 'Wringers', 'Wet Mops', 'Dust Mops', 'Mop Handles', 'Brooms', 'Push Brooms', 'Dustpans', 'Squeegees', 'Cleaning Carts'] }
+        ]
+      },
+      waste: {
+        label: 'Waste Management',
+        subcategories: [
+          { id: 'can-liners', name: 'Can Liners', products: ['High-Density Can Liners', 'Low-Density Can Liners', 'Linear-Low-Density Liners', 'Black Liners', 'Clear Liners', 'Natural Liners', 'Heavy-Duty Liners', 'Extra Heavy-Duty Liners', 'Recycling Liners'] },
+          { id: 'waste-equipment', name: 'Waste Equipment', products: ['Round Waste Containers', 'Rectangular Waste Containers', 'Waste Container Lids', 'Recycling Containers', 'Recycling Container Lids', 'Utility Containers', 'Waste Container Dollies'] }
+        ]
+      },
+      shipping: {
+        label: 'Packaging & Shipping',
+        subcategories: [
+          { id: 'boxes', name: 'Boxes', products: ['Corrugated Shipping Boxes', 'Regular Slotted Cartons', 'Master Cartons', 'Moving & Storage Boxes', 'Mailer Boxes', 'Specialty Cartons'] },
+          { id: 'tape', name: 'Tape', products: ['Packing Tape', 'Clear Carton-Sealing Tape', 'Tan Carton-Sealing Tape', 'Reinforced Packaging Tape', 'Tape Dispensers'] },
+          { id: 'film', name: 'Film', products: ['Hand Stretch Wrap', 'Machine Stretch Wrap', 'Pallet Wrap', 'Shrink Film', 'Poly Sheeting', 'Pallet Covers', 'Shrink Bags'] },
+          { id: 'labels', name: 'Labels', products: ['Shipping Labels', 'Thermal Labels', 'Carton Labels', 'Handling Labels', 'Barcode Labels'] },
+          { id: 'pallet-supplies', name: 'Pallet & Shipping Supplies', products: ['Strapping', 'Strapping Seals & Buckles', 'Edge Protectors', 'Corner Boards', 'Bubble Cushioning', 'Kraft Packing Paper', 'Void-Fill Paper', 'Packing Peanuts', 'Protective Packaging'] }
+        ]
+      }
+    };
+
+    const sizeMap = {
+      cups: '8 oz / 12 oz / 16 oz / 20 oz / 24 oz / 32 oz',
+      takeout: '8 oz / 16 oz / 24 oz / 32 oz / 48 oz',
+      bags: 'Small / Medium / Large / Custom',
+      gloves: 'S / M / L / XL',
+      tableware: 'Standard serviceware sizing',
+      wraps: 'Commercial roll and sheet sizes',
+      paper: 'Multifold / roll / dispenser fit',
+      chemicals: '1 gal / refill / bulk quantity',
+      waste: 'Gallons and standard bin formats',
+      shipping: 'Standard shipping and pallet sizes'
+    };
+
+    const materialMap = {
+      cups: 'Paper / Plastic / PP / PET',
+      takeout: 'PP / PET / Fiber / Aluminum',
+      bags: 'Kraft / LDPE / PP / Paper',
+      gloves: 'Nitrile / Poly / Vinyl',
+      tableware: 'Paper / Plastic / Wood / Fiber',
+      wraps: 'Aluminum / Film / Paper',
+      paper: 'Paper / Fiber',
+      chemicals: 'Chemical concentrate / solution',
+      waste: 'HDPE / LDPE / Poly',
+      shipping: 'Corrugate / Film / Paper'
+    };
+
+    const colorMap = {
+      cups: 'White / black / clear / kraft',
+      takeout: 'Natural / black / clear / white',
+      bags: 'Kraft / white / natural / custom',
+      gloves: 'Blue / black / clear / white',
+      tableware: 'Natural / white / black',
+      wraps: 'Silver / clear / kraft / brown',
+      paper: 'White / natural / brown',
+      chemicals: 'Amber / clear / white / blue',
+      waste: 'Black / clear / natural',
+      shipping: 'Brown / clear / tan / white'
+    };
+
+    const products = [];
+
+    Object.entries(catalogTree).forEach(([departmentId, department]) => {
+      department.subcategories.forEach((subcategory) => {
+        subcategory.products.forEach((productName, index) => {
+          const id = `${departmentId}-${subcategory.id}-${index + 1}`;
+          const availability = index % 3 === 0 ? 'stocked' : index % 3 === 1 ? 'available-to-order' : 'custom-special-order';
+          const customizable = ['bags', 'cups', 'shipping'].includes(departmentId) || productName.toLowerCase().includes('custom') || productName.toLowerCase().includes('logo');
+
+          products.push({
+            id,
+            name: productName,
+            sku: `${departmentId.toUpperCase()}-${subcategory.id.toUpperCase()}-${String(index + 1).padStart(3, '0')}`,
+            category: departmentId,
+            subcategory: subcategory.name,
+            material: materialMap[departmentId] || 'Commercial grade',
+            size: sizeMap[departmentId] || 'Standard commercial format',
+            capacity: 'Commercial use',
+            dimensions: 'Standard commercial sizing',
+            thickness: 'Commercial grade',
+            color: colorMap[departmentId] || 'Various',
+            packQuantity: 'Case pack available',
+            caseQuantity: 'Bulk case or pallet based',
+            availability,
+            featured: false,
+            customizable,
+            description: `${productName} is a practical commercial supply in the ${department.label} category intended for repeat operational use and easier buying decisions.`,
+            images: ['https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=900&q=80'],
+            specifications: ['Commercial grade', 'Operationally ready', 'Bulk supply support'],
+            relatedProducts: ['Related products in this category'],
+            featuredPriority: false
+          });
+        });
+      });
+    });
+
+    const searchInput = document.getElementById('searchInput');
+    const clearSearch = document.getElementById('clearSearch');
+    const filterCategory = document.getElementById('filterCategory');
+    const filterSubcategory = document.getElementById('filterSubcategory');
+    const filterMaterial = document.getElementById('filterMaterial');
+    const filterSize = document.getElementById('filterSize');
+    const filterColor = document.getElementById('filterColor');
+    const filterAvailability = document.getElementById('filterAvailability');
+    const filterPack = document.getElementById('filterPack');
+    const sortSelect = document.getElementById('sortSelect');
+    const productGrid = document.getElementById('productGrid');
+    const resultsSummary = document.getElementById('resultsSummary');
+    const emptyState = document.getElementById('emptyState');
+    const catalogParams = new URLSearchParams(window.location.search);
+    const initialSearch = catalogParams.get('search') || '';
+    const initialCategory = catalogParams.get('category') || 'all';
+
+    let activeCategory = 'all';
+
+    function getAvailabilityLabel(value) {
+      if (value === 'stocked') return 'Stocked';
+      if (value === 'available-to-order') return 'Available to order';
+      return 'Custom / special order';
+    }
+
+    function addToQuote(productId) {
+      const product = products.find((item) => item.id === productId);
+      if (!product) return;
+      const quote = JSON.parse(localStorage.getItem('dm-quote-list') || '[]');
+      const existingIndex = quote.findIndex((item) => item.id === product.id);
+
+      if (existingIndex >= 0) {
+        quote[existingIndex].quantity += 1;
+      } else {
+        quote.push({ id: product.id, name: product.name, sku: product.sku, quantity: 1 });
+      }
+
+      localStorage.setItem('dm-quote-list', JSON.stringify(quote));
+      renderQuoteList();
+
+      const form = document.getElementById('rfqForm');
+      const productsField = form.querySelector('textarea');
+      if (productsField) {
+        const value = productsField.value.trim();
+        const productText = `${product.name} (${product.sku})`;
+        productsField.value = value ? `${value}\n- ${productText}` : productText;
+      }
+      document.getElementById('rfq-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function updateQuoteQuantity(productId, change) {
+      const quote = JSON.parse(localStorage.getItem('dm-quote-list') || '[]');
+      const item = quote.find((quoteItem) => quoteItem.id === productId);
+      if (!item) return;
+
+      item.quantity = Math.max(0, Number(item.quantity || 0) + change);
+      const updatedQuote = quote.filter((quoteItem) => quoteItem.quantity > 0);
+      localStorage.setItem('dm-quote-list', JSON.stringify(updatedQuote));
+      renderQuoteList();
+    }
+
+    function removeFromQuote(productId) {
+      const quote = JSON.parse(localStorage.getItem('dm-quote-list') || '[]');
+      localStorage.setItem('dm-quote-list', JSON.stringify(quote.filter((item) => item.id !== productId)));
+      renderQuoteList();
+    }
+
+    function populateSelect(select, options, valueKey, labelKey) {
+      const existing = Array.from(select.options).map((option) => option.value);
+      const values = options.filter((value) => value && !existing.includes(value)).sort();
+      values.forEach((value) => {
+        const option = document.createElement('option');
+        option.value = value;
+        option.textContent = value;
+        select.appendChild(option);
+      });
+    }
+
+    function populateFilterOptions() {
+      const categoryOptions = [...new Set(products.map((item) => categoryMeta.find((meta) => meta.id === item.category)?.label || item.category))];
+      const subcategoryOptions = [...new Set(products.map((item) => item.subcategory))];
+      const materialOptions = [...new Set(products.map((item) => item.material).filter(Boolean))];
+      const sizeOptions = [...new Set(products.map((item) => item.size).filter(Boolean))];
+      const colorOptions = [...new Set(products.map((item) => item.color).filter(Boolean))];
+      const packOptions = [...new Set(products.map((item) => item.packQuantity).filter(Boolean))];
+
+      filterCategory.innerHTML = '<option value="all">All products</option>' + categoryOptions.map((label) => {
+        const match = categoryMeta.find((meta) => meta.label === label);
+        return `<option value="${match ? match.id : label}">${label}</option>`;
+      }).join('');
+      filterCategory.value = activeCategory;
+
+      filterSubcategory.innerHTML = '<option value="all">All subcategories</option>' + subcategoryOptions.map((item) => `<option value="${item}">${item}</option>`).join('');
+      filterMaterial.innerHTML = '<option value="all">All materials</option>' + materialOptions.map((item) => `<option value="${item}">${item}</option>`).join('');
+      filterSize.innerHTML = '<option value="all">All sizes</option>' + sizeOptions.map((item) => `<option value="${item}">${item}</option>`).join('');
+      filterColor.innerHTML = '<option value="all">All colors</option>' + colorOptions.map((item) => `<option value="${item}">${item}</option>`).join('');
+      filterPack.innerHTML = '<option value="all">All pack sizes</option>' + packOptions.map((item) => `<option value="${item}">${item}</option>`).join('');
+    }
+
+    function getFilteredProducts() {
+      const searchText = searchInput.value.trim().toLowerCase();
+      const categoryValue = filterCategory.value;
+      const subcategoryValue = filterSubcategory.value;
+      const materialValue = filterMaterial.value;
+      const sizeValue = filterSize.value;
+      const colorValue = filterColor.value;
+      const availabilityValue = filterAvailability.value;
+      const packValue = filterPack.value;
+
+      return products.filter((item) => {
+        const text = [
+          item.name,
+          item.sku,
+          item.category,
+          item.subcategory,
+          item.material,
+          item.size,
+          item.color,
+          item.description,
+          item.specifications.join(' '),
+          item.category ? categoryMeta.find((meta) => meta.id === item.category)?.label || item.category : ''
+        ].join(' ').toLowerCase();
+
+        const matchesSearch = !searchText || text.includes(searchText);
+        const matchesCategory = categoryValue === 'all' || item.category === categoryValue;
+        const matchesSubcategory = subcategoryValue === 'all' || item.subcategory === subcategoryValue;
+        const matchesMaterial = materialValue === 'all' || item.material === materialValue;
+        const matchesSize = sizeValue === 'all' || item.size === sizeValue;
+        const matchesColor = colorValue === 'all' || item.color === colorValue;
+        const matchesAvailability = availabilityValue === 'all' || item.availability === availabilityValue;
+        const matchesPack = packValue === 'all' || item.packQuantity === packValue;
+
+        return matchesSearch && matchesCategory && matchesSubcategory && matchesMaterial && matchesSize && matchesColor && matchesAvailability && matchesPack;
+      });
+    }
+
+    function sortProducts(list) {
+      const value = sortSelect.value;
+      const sorted = [...list];
+
+      if (value === 'name-asc') {
+        return sorted.sort((a, b) => a.name.localeCompare(b.name));
+      }
+
+      if (value === 'newest') {
+        return sorted.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
+      }
+
+      if (value === 'category') {
+        return sorted.sort((a, b) => (a.category || '').localeCompare(b.category || ''));
+      }
+
+      return sorted.sort((a, b) => Number(b.featuredPriority || false) - Number(a.featuredPriority || false) || Number(b.featured || false) - Number(a.featured || false));
+    }
+
+    function renderProducts() {
+      const filtered = sortProducts(getFilteredProducts());
+      const total = filtered.length;
+
+      resultsSummary.textContent = total ? `Showing 1–${filtered.length} of ${filtered.length} products` : 'Showing 0–0 of 0 products';
+
+      if (!total) {
+        productGrid.innerHTML = '';
+        emptyState.classList.add('show');
+        return;
+      }
+
+      emptyState.classList.remove('show');
+      productGrid.innerHTML = filtered.map((product) => {
+        const badgeClass = product.availability === 'stocked' ? 'stocked' : product.availability === 'available-to-order' ? 'order' : 'custom';
+        const categoryName = categoryMeta.find((meta) => meta.id === product.category)?.label || product.category;
+        return `
+          <article class="product-card">
+            <div class="product-image">
+              <img src="${product.images[0]}" alt="${product.name}" />
+              <span class="badge ${badgeClass}">${getAvailabilityLabel(product.availability)}</span>
+            </div>
+            <div class="product-body">
+              <div class="category-label">${categoryName}</div>
+              <h3 class="product-name">${product.name}</h3>
+              <div class="sku">SKU: ${product.sku}</div>
+              <ul class="spec-list">
+                ${product.specifications.slice(0, 3).map((spec) => `<li>${spec}</li>`).join('')}
+              </ul>
+              ${product.size ? `<div class="size-row">Sizes: ${product.size}</div>` : ''}
+              <div class="case-note">${product.packQuantity}</div>
+              <div class="request-price">Request case pricing</div>
+              <div class="card-actions">
+                <a class="card-btn secondary" href="product.html?category=${product.category}">View Details</a>
+                <a class="card-btn primary request-quote-btn" href="#rfq-form" data-id="${product.id}">Request Quote</a>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+
+      document.querySelectorAll('.request-quote-btn').forEach((button) => {
+        button.addEventListener('click', (event) => {
+          event.preventDefault();
+          addToQuote(button.dataset.id);
+          window.location.hash = 'rfq-form';
+        });
+      });
+    }
+
+    function renderQuoteList() {
+      const items = JSON.parse(localStorage.getItem('dm-quote-list') || '[]');
+      document.getElementById('quoteCount').textContent = items.length;
+
+      const wrapper = document.getElementById('quoteListItems');
+      if (!items.length) {
+        wrapper.innerHTML = '<div style="color: var(--muted);">No products requested yet. Use Request Quote on any item to build your quote list.</div>';
+        return;
+      }
+
+      wrapper.innerHTML = items.map((item) => `
+        <div class="quote-item">
+          <div>
+            <div style="font-weight:800; color: var(--navy);">${item.name}</div>
+            <div style="color: var(--muted); font-size: .85rem; margin-top: 4px;">SKU: ${item.sku}</div>
+          </div>
+          <div class="quote-controls">
+            <button class="quantity-control" type="button" data-quote-action="decrease" data-id="${item.id}" aria-label="Decrease ${item.name} quantity">−</button>
+            <span class="quote-quantity">${item.quantity} Cases</span>
+            <button class="quantity-control" type="button" data-quote-action="increase" data-id="${item.id}" aria-label="Increase ${item.name} quantity">+</button>
+            <button class="remove-quote" type="button" data-quote-action="remove" data-id="${item.id}" aria-label="Remove ${item.name} from quote list">×</button>
+          </div>
+        </div>
+      `).join('');
+
+      wrapper.querySelectorAll('[data-quote-action]').forEach((button) => {
+        button.addEventListener('click', () => {
+          const action = button.dataset.quoteAction;
+          if (action === 'remove') removeFromQuote(button.dataset.id);
+          if (action === 'increase') updateQuoteQuantity(button.dataset.id, 1);
+          if (action === 'decrease') updateQuoteQuantity(button.dataset.id, -1);
+        });
+      });
+    }
+
+    searchInput.addEventListener('input', renderProducts);
+    clearSearch.addEventListener('click', () => { searchInput.value = ''; renderProducts(); });
+    filterCategory.addEventListener('change', () => { activeCategory = filterCategory.value; renderProducts(); });
+    document.getElementById('applyFilters').addEventListener('click', renderProducts);
+    document.getElementById('clearFilters').addEventListener('click', () => {
+      searchInput.value = '';
+      filterCategory.value = 'all';
+      filterSubcategory.value = 'all';
+      filterMaterial.value = 'all';
+      filterSize.value = 'all';
+      filterColor.value = 'all';
+      filterAvailability.value = 'all';
+      filterPack.value = 'all';
+      activeCategory = 'all';
+      renderProducts();
+    });
+    document.getElementById('emptyClearFilters').addEventListener('click', () => {
+      document.getElementById('clearFilters').click();
+    });
+    sortSelect.addEventListener('change', renderProducts);
+
+    document.getElementById('rfqForm').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const message = document.createElement('div');
+      message.style.marginTop = '16px';
+      message.style.padding = '14px 16px';
+      message.style.borderRadius = '12px';
+      message.style.background = 'rgba(201,169,104,.12)';
+      message.style.color = varColor('navy');
+      message.style.fontWeight = '700';
+      message.textContent = 'Thank you. Your request has been received by Deccan Midwest Supply Co. Our team will review your requirements and follow up regarding availability and pricing.';
+      form.appendChild(message);
+      form.reset();
+    });
+
+    function varColor(name) {
+      return name === 'navy' ? '#10233d' : '#171d28';
+    }
+
+    populateFilterOptions();
+    searchInput.value = initialSearch;
+    if (categoryMeta.some((meta) => meta.id === initialCategory)) {
+      activeCategory = initialCategory;
+      filterCategory.value = initialCategory;
+    }
+    renderProducts();
+    renderQuoteList();
+  </script>
+</body>
+</html>

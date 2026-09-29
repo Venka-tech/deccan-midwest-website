@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Industry Solution | Deccan Midwest Supply Co.</title>
+  <style>
+    :root {
+      --navy: #10233d;
+      --plum: #3d1f45;
+      --gold: #c9a968;
+      --ivory: #f8f4ee;
+      --line: rgba(16,35,61,.12);
+      --muted: #5d636c;
+      --ink: #171d28;
+      --max: 1200px;
+      --sx: 28px;
+      --sy: 80px;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: "Segoe UI", Arial, sans-serif; color: var(--ink); background: linear-gradient(180deg, #f7f2eb, #fff); }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 var(--sx); }
+    .topbar { position: sticky; top: 0; background: rgba(16,35,61,.9); backdrop-filter: blur(10px); z-index: 10; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .topbar-inner { max-width: var(--max); margin: 0 auto; padding: 18px var(--sx); display: flex; align-items: center; justify-content: space-between; gap: 22px; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; color: white; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .brand img { width: 42px; height: 42px; }
+    .nav { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 18px; color: rgba(255,255,255,.82); font-size: 13px; font-weight: 700; }
+    .nav a:hover { color: var(--gold); }
+    .hero { background: linear-gradient(180deg, rgba(61,31,69,.96), rgba(16,35,61,.9)); padding: 64px 0 52px; color: white; }
+    .eyebrow { margin: 0 0 16px; color: var(--gold); font-size: 11px; font-weight: 900; letter-spacing: .18em; text-transform: uppercase; }
+    .hero h1 { margin: 0; font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: .96; }
+    .hero p { max-width: 760px; color: rgba(255,255,255,.8); line-height: 1.8; font-size: 1.08rem; margin-top: 18px; }
+    main { padding: 42px 0 100px; }
+    .content-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 24px; }
+    .panel { background: white; border: 1px solid var(--line); border-radius: 22px; padding: 24px; box-shadow: 0 18px 36px rgba(16,35,61,.04); }
+    .panel h3 { margin: 0 0 16px; font-size: 1.4rem; }
+    .bullet-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+    .bullet-list li { display: flex; gap: 12px; color: var(--muted); line-height: 1.7; }
+    .bullet-list li::before { content: "✓"; display: inline-flex; width: 20px; height: 20px; align-items: center; justify-content: center; flex-shrink: 0; border-radius: 50%; background: rgba(201,169,104,.16); color: var(--plum); font-weight: 900; }
+    .stats { display: grid; grid-template-columns: repeat(2, minmax(120px, 1fr)); gap: 12px; margin-top: 18px; }
+    .stat { padding: 18px; border: 1px solid var(--line); border-radius: 16px; background: #fbfaf8; }
+    .stat strong { display: block; font-size: 1.4rem; }
+    .stat span { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .12em; }
+    .product-list { display: grid; grid-template-columns: repeat(2, minmax(200px, 1fr)); gap: 12px; margin-top: 18px; }
+    .product-item { display: block; padding: 14px 16px; border: 1px solid var(--line); border-radius: 14px; background: #faf7f3; font-weight: 700; transition: border-color .2s ease, background .2s ease, transform .2s ease; }
+    .product-item:hover, .product-item:focus-visible { border-color: var(--gold); background: #fffaf0; transform: translateY(-2px); }
+    .cta-box { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 12px; }
+    .primary, .secondary { border: 0; border-radius: 12px; font-weight: 800; padding: 12px 18px; cursor: pointer; }
+    .primary { background: var(--plum); color: white; }
+    .secondary { background: var(--gold); color: var(--navy); }
+    @media (max-width: 760px) { .content-grid { grid-template-columns: 1fr; } .product-list { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html#home" aria-label="Deccan Midwest Supply Co. home">
+        <img src="./assets/logo-emblem.png" alt="Deccan Midwest Supply Co." />
+        <span>Deccan Midwest Supply Co.</span>
+      </a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="industries.html">Industries</a>
+        <a href="careers.html">Careers</a>
+      </nav>
+      <a class="secondary" href="industries.html" style="display:inline-flex;align-items:center;justify-content:center;">All industries</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow">Industry solution</p>
+      <h1 id="industryTitle">Industry focus</h1>
+      <p id="industrySummary">Supply programs built around operational needs.</p>
+    </div>
+  </section>
+
+  <main>
+    <div class="container">
+      <div class="content-grid">
+        <div class="panel">
+          <h3>Operational priorities</h3>
+          <ul id="priorityList" class="bullet-list"></ul>
+          <div class="stats" id="statsGrid"></div>
+        </div>
+
+        <div class="panel">
+          <h3>Recommended product categories</h3>
+          <div id="productList" class="product-list"></div>
+          <div class="cta-box">
+            <button class="primary">Request a program quote</button>
+            <button class="secondary">Request sample pack</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const industries = {
+      restaurants: {
+        title: 'Restaurants & Cafés',
+        summary: 'Operationally focused supply planning for high-turn service, takeaway and beverage operations that need dependable inventory without extra friction.',
+        priorities: [
+          'Fast-moving beverage and takeout supply planning',
+          'Bulk replenishment with strong case and pallet efficiency',
+          'Food-contact documentation and packaging consistency',
+          'Program flexibility across dine-in, delivery and grab-and-go service'
+        ],
+        stats: [['Programs', 'Daily'], ['Lead time', '3–5 days'], ['Volume', 'High'], ['Support', 'Multi-site']],
+        products: ['Cups, Lids & Drinkware', 'Food Containers & Takeout', 'Cutlery & Tableware', 'Wraps, Foil & Storage']
+      },
+      grocery: {
+        title: 'Grocery & Convenience Stores',
+        summary: 'Prepared-food and grab-and-go merchandising needs supported with reliable packaging, wraps, and quick-turn restock planning.',
+        priorities: [
+          'Prepared food and grab-and-go packaging',
+          'Space-efficient storage and case packs',
+          'Visibility into availability and replenishment schedules',
+          'High-volume commodity support'
+        ],
+        stats: [['Programs', 'Weekly'], ['Lead time', '4–7 days'], ['Volume', 'Moderate'], ['Support', 'Multi-site']],
+        products: ['Food Containers & Takeout', 'Bags & Custom Packaging', 'Wraps, Foil & Storage', 'Waste-Management Products']
+      },
+      hotels: {
+        title: 'Hotels & Hospitality',
+        summary: 'Guest-facing serviceware and housekeeping support built around repeat volume and dependable operating cadence.',
+        priorities: [
+          'Guest service program consistency',
+          'Housekeeping and public-area supply planning',
+          'Dining and breakfast service packaging support',
+          'Cross-property ordering efficiency'
+        ],
+        stats: [['Programs', 'Monthly'], ['Lead time', '5–8 days'], ['Volume', 'High'], ['Support', 'Regional']],
+        products: ['Cups, Lids & Drinkware', 'Paper & Janitorial Products', 'Cutlery & Tableware', 'Cleaning Chemicals']
+      },
+      processors: {
+        title: 'Food Processors',
+        summary: 'Back-of-house and distribution support for managed food handling, portioning, and packaging workflows.',
+        priorities: [
+          'Food-contact compliance and traceability',
+          'Prep and storage materials for operational consistency',
+          'Case and pallet efficiency for distribution',
+          'Supplier documentation and process reliability'
+        ],
+        stats: [['Programs', 'Programmatic'], ['Lead time', '5–10 days'], ['Volume', 'Bulk'], ['Support', 'Supply chain']],
+        products: ['Food Containers & Takeout', 'Wraps, Foil & Storage', 'Packaging & Shipping Supplies', 'Waste-Management Products']
+      },
+      bakeries: {
+        title: 'Bakeries',
+        summary: 'Bakery packaging and food-delivery needs built around presentation, portability and efficient daily replenishment.',
+        priorities: [
+          'Box and wrap systems for pastry and prepared foods',
+          'Display-support packaging and branded carryout',
+          'Small-batch and high-turn order flexibility',
+          'Presentation-ready product handling'
+        ],
+        stats: [['Programs', 'Daily'], ['Lead time', '3–6 days'], ['Volume', 'Fast-turn'], ['Support', 'Regional']],
+        products: ['Food Containers & Takeout', 'Bags & Custom Packaging', 'Wraps, Foil & Storage', 'Cutlery & Tableware']
+      },
+      healthcare: {
+        title: 'Healthcare & Senior Living',
+        summary: 'Reliable assurance for meal service, sanitation and facility support in care environments with sensitive service expectations.',
+        priorities: [
+          'Hygiene-first procurement',
+          'Foodservice packaging and sanitation compatibility',
+          'Dependable documentation and compliance support',
+          'Repeat purchase planning for daily operations'
+        ],
+        stats: [['Programs', 'Scheduled'], ['Lead time', '4–7 days'], ['Volume', 'Moderate'], ['Support', 'Institutional']],
+        products: ['Paper & Janitorial Products', 'Cleaning Chemicals', 'Food Containers & Takeout', 'Gloves & Protective Apparel']
+      },
+      schools: {
+        title: 'Schools & Universities',
+        summary: 'Cafeteria and facility programs designed for scale, value, and service continuity across academic operations.',
+        priorities: [
+          'Bulk serviceware and disposables',
+          'Cost-conscious repeat ordering',
+          'Multi-site program coordination',
+          'Readily available replenishment support'
+        ],
+        stats: [['Programs', 'Monthly'], ['Lead time', '5–9 days'], ['Volume', 'Bulk'], ['Support', 'Multi-site']],
+        products: ['Cutlery & Tableware', 'Food Containers & Takeout', 'Paper & Janitorial Products', 'Waste-Management Products']
+      },
+      corporate: {
+        title: 'Corporate Facilities',
+        summary: 'Breakroom and office supply planning that keeps employees supported while simplifying procurement for facilities teams.',
+        priorities: [
+          'Consistency in breakroom and pantry essentials',
+          'Operational simplicity for facility buyers',
+          'Consolidated ordering for office-wide needs',
+          'Recurring replenishment planning'
+        ],
+        stats: [['Programs', 'Monthly'], ['Lead time', '4–7 days'], ['Volume', 'Steady'], ['Support', 'Single-site']],
+        products: ['Cups, Lids & Drinkware', 'Paper & Janitorial Products', 'Cleaning Chemicals', 'Waste-Management Products']
+      },
+      janitorial: {
+        title: 'Janitorial & Cleaning Companies',
+        summary: 'Operationally driven cleaning and facility supply categories that support day-to-day cleanup and service requirements.',
+        priorities: [
+          'Chemical and paper support across sites',
+          'Bulk facility replenishment',
+          'SDS and documentation access',
+          'Reliable fulfillment for recurring service routes'
+        ],
+        stats: [['Programs', 'Route-based'], ['Lead time', '3–6 days'], ['Volume', 'High'], ['Support', 'Multi-site']],
+        products: ['Cleaning Chemicals', 'Paper & Janitorial Products', 'Gloves & Protective Apparel', 'Waste-Management Products']
+      },
+      warehouses: {
+        title: 'Warehouses & Manufacturers',
+        summary: 'Operational packaging and shipping essentials for inventory movement, dispatch and plant-floor continuity.',
+        priorities: [
+          'Warehouse consumables and box stock',
+          'Packing and shipping consistency',
+          'Inventory coordination and pallet planning',
+          'Repeat procurement and lead-time visibility'
+        ],
+        stats: [['Programs', 'Weekly'], ['Lead time', '5–9 days'], ['Volume', 'High'], ['Support', 'Distribution']],
+        products: ['Packaging & Shipping Supplies', 'Waste-Management Products', 'Paper & Janitorial Products', 'Cleaning Chemicals']
+      },
+      distributors: {
+        title: 'Distributors & Resellers',
+        summary: 'Commercial supply access and product support for buyers who serve multiple channels and need flexibility in stock and pricing.',
+        priorities: [
+          'Flexible case quantities and program support',
+          'Multi-category catalog access',
+          'Consistency in documentation and supply planning',
+          'Volume-based price alignment'
+        ],
+        stats: [['Programs', 'Variable'], ['Lead time', '5–10 days'], ['Volume', 'Multi-category'], ['Support', 'Partner network']],
+        products: ['Cups, Lids & Drinkware', 'Packaging & Shipping Supplies', 'Food Containers & Takeout', 'Bags & Custom Packaging']
+      },
+      government: {
+        title: 'Government & Institutional Buyers',
+        summary: 'Procurement-ready product support for public-sector organizations, institutions and public facilities that need reliable commercial supply.',
+        priorities: [
+          'Documentation and compliance control',
+          'Repeat ordering for campus and institutional operations',
+          'Consistent supply planning and service levels',
+          'Categories that support multi-site oversight'
+        ],
+        stats: [['Programs', 'Scheduled'], ['Lead time', '7–10 days'], ['Volume', 'Institutional'], ['Support', 'Public sector']],
+        products: ['Paper & Janitorial Products', 'Cleaning Chemicals', 'Waste-Management Products', 'Cups, Lids & Drinkware']
+      }
+    };
+
+    const key = new URLSearchParams(window.location.search).get('industry') || 'restaurants';
+    const data = industries[key] || industries.restaurants;
+    const productCategoryLinks = {
+      'Cups, Lids & Drinkware': 'cups',
+      'Food Containers & Takeout': 'takeout',
+      'Bags & Custom Packaging': 'bags',
+      'Gloves & Protective Apparel': 'gloves',
+      'Cutlery & Tableware': 'tableware',
+      'Wraps, Foil & Storage': 'wraps',
+      'Wraps, Foil & Food Storage': 'wraps',
+      'Paper & Janitorial Products': 'paper',
+      'Paper & Janitorial': 'paper',
+      'Cleaning Chemicals': 'chemicals',
+      'Cleaning Chemicals & Supplies': 'chemicals',
+      'Waste-Management Products': 'waste',
+      'Waste Management': 'waste',
+      'Packaging & Shipping Supplies': 'shipping',
+      'Packaging & Shipping': 'shipping'
+    };
+    document.getElementById('industryTitle').textContent = data.title;
+    document.getElementById('industrySummary').textContent = data.summary;
+    document.getElementById('priorityList').innerHTML = data.priorities.map(item => `<li>${item}</li>`).join('');
+    document.getElementById('statsGrid').innerHTML = data.stats.map(([label, value]) => `
+      <div class="stat"><span>${label}</span><strong>${value}</strong></div>
+    `).join('');
+    document.getElementById('productList').innerHTML = data.products.map(item => {
+      const category = productCategoryLinks[item];
+      const href = category ? `product.html?category=${category}` : 'products.html#catalog';
+      return `<a class="product-item" href="${href}">${item}</a>`;
+    }).join('');
+  </script>
+</body>
+</html>

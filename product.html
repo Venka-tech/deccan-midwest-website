@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Category | Deccan Midwest Supply Co.</title>
+  <style>
+    :root {
+      --navy: #10233d;
+      --plum: #3d1f45;
+      --gold: #c9a968;
+      --ivory: #f8f4ee;
+      --line: rgba(16, 35, 61, 0.12);
+      --muted: #5a6470;
+      --ink: #171d28;
+      --max: 1200px;
+      --sx: 28px;
+      --shadow-soft: 0 22px 52px rgba(16, 35, 61, 0.07);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--ink);
+      background: linear-gradient(180deg, #f9f4ee 0%, #fffdfb 20%, #f5f1eb 100%);
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button, input { font: inherit; }
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 var(--sx); }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(16, 35, 61, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .topbar-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 18px var(--sx);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: white;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .brand img { width: 42px; height: 42px; }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--gold);
+      color: var(--navy);
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 800;
+      box-shadow: 0 12px 24px rgba(201, 169, 104, 0.25);
+    }
+
+    .header-surface {
+      position: relative;
+      background: linear-gradient(135deg, rgba(61,31,69,.96), rgba(16,35,61,.92));
+      color: white;
+      overflow: hidden;
+    }
+    .header-surface::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(201,169,104,.28), transparent 36%);
+    }
+    .header-inner {
+      position: relative;
+      z-index: 1;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 56px var(--sx) 26px;
+    }
+    .page-tag {
+      margin: 0 0 16px;
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 26px;
+      flex-wrap: wrap;
+    }
+    .page-header h1 {
+      margin: 0;
+      font-size: clamp(2.6rem, 5vw, 5rem);
+      line-height: 0.94;
+      letter-spacing: -.06em;
+    }
+    .category-summary {
+      margin: 18px 0 0;
+      max-width: 760px;
+      color: rgba(255,255,255,.8);
+      font-size: 1.02rem;
+      line-height: 1.8;
+    }
+    .category-highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .category-highlights span {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      color: rgba(255,255,255,.82);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .aux-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 14px 20px;
+      font-weight: 800;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.16);
+      color: white;
+    }
+    .category-switcher {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 26px;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 999px;
+      background: rgba(255,255,255,.04);
+      color: rgba(255,255,255,.78);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .chip.active {
+      background: rgba(201,169,104,.14);
+      border-color: rgba(201,169,104,.8);
+      color: white;
+    }
+
+    .category-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(260px, .8fr);
+      gap: 24px;
+      align-items: end;
+      margin-bottom: 24px;
+      padding: 26px 28px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(255,255,255,.74);
+      box-shadow: var(--shadow-soft);
+    }
+    .section-kicker {
+      margin: 0 0 10px;
+      color: var(--plum);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    .category-intro h2 {
+      margin: 0;
+      max-width: 680px;
+      font-size: clamp(1.7rem, 3vw, 2.6rem);
+      line-height: 1.05;
+      letter-spacing: -.05em;
+    }
+    .category-intro p:not(.section-kicker) {
+      margin: 12px 0 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .section-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+    .section-nav a {
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      color: var(--navy);
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .section-nav a:hover, .section-nav a:focus-visible {
+      border-color: var(--gold);
+      background: #fffaf0;
+    }
+
+    main {
+      padding: 54px 0 96px;
+    }
+    .product-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+    .product-card {
+      border-radius: 30px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.9);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      scroll-margin-top: 112px;
+    }
+    .product-layout {
+      display: grid;
+      grid-template-columns: 1.08fr 1.2fr;
+      gap: 0;
+    }
+    .gallery {
+      background: linear-gradient(180deg, #eef2f6 0%, #edf0f7 100%);
+      border-right: 1px solid var(--line);
+      padding: 22px;
+    }
+    .main-photo {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 22px;
+      border: 1px solid rgba(16,35,61,.08);
+      box-shadow: 0 18px 28px rgba(16,35,61,.08);
+    }
+    .thumbs {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(70px, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .thumbs img {
+      width: 100%;
+      height: 86px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid rgba(16,35,61,.08);
+    }
+    .product-info {
+      padding: 28px;
+    }
+    .section-marker {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      color: var(--plum);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    .section-marker strong {
+      display: inline-flex;
+      width: 30px;
+      height: 30px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9px;
+      background: var(--plum);
+      color: white;
+      font-size: 12px;
+      letter-spacing: 0;
+    }
+    .sku {
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+    .product-info h2 {
+      margin: 12px 0 0;
+      font-size: clamp(2rem, 2.6vw, 3rem);
+      line-height: 1.06;
+      letter-spacing: -.05em;
+    }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 18px 0 22px;
+    }
+    .meta-row span {
+      display: inline-flex;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: #f5efe8;
+      color: var(--navy);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .description {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.02rem;
+      line-height: 1.85;
+    }
+    .quantity-wrap {
+      margin-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+    .qty-selector {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: white;
+    }
+    .qty-selector span {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .qty-selector input {
+      width: 46px;
+      border: 0;
+      background: transparent;
+      font-size: 1rem;
+      color: var(--ink);
+      text-align: center;
+      outline: none;
+    }
+    .secondary, .primary, .ghost {
+      border: 1px solid transparent;
+      border-radius: 12px;
+      padding: 12px 18px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .primary {
+      background: var(--plum);
+      color: white;
+    }
+    .secondary {
+      background: var(--gold);
+      color: var(--navy);
+    }
+    .ghost {
+      background: white;
+      color: var(--ink);
+      border-color: var(--line);
+    }
+    .buy-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .section-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 14px;
+      border-radius: 10px;
+      background: var(--navy);
+      color: white;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .section-cta:hover, .section-cta:focus-visible { background: var(--plum); }
+    .segment-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(180px, 1fr));
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .segment-point {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 72px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: #faf7f3;
+      color: var(--ink);
+      font-weight: 700;
+      line-height: 1.5;
+      text-align: center;
+    }
+    .segment-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(170px, 1fr));
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .segment-point {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 72px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: #faf7f3;
+      color: var(--ink);
+      font-weight: 700;
+      line-height: 1.45;
+      text-align: center;
+    }
+    a.segment-point:hover, a.segment-point:focus-visible {
+      border-color: var(--gold);
+      background: #fffaf0;
+      color: var(--plum);
+    }
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(190px, 1fr));
+      gap: 14px;
+      margin-top: 22px;
+    }
+    .detail-box {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fbfaf8;
+    }
+    .detail-box small {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .detail-box strong {
+      display: block;
+      margin-top: 10px;
+      line-height: 1.45;
+      font-size: 1rem;
+    }
+    .details-panel {
+      padding: 0 28px 28px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(220px, 1fr));
+      gap: 18px;
+    }
+    .spec-card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 18px;
+    }
+    .spec-card h3 {
+      margin: 0 0 12px;
+      font-size: 1.1rem;
+      letter-spacing: -.03em;
+    }
+    .spec-card table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .spec-card th,
+    .spec-card td {
+      text-align: left;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    .spec-card th {
+      width: 42%;
+      padding-right: 10px;
+    }
+    .spec-card td {
+      color: var(--muted);
+    }
+    .spec-card ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+    .related-wrap {
+      padding: 0 28px 28px;
+    }
+    .related {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(180px, 1fr));
+      gap: 16px;
+      margin-top: 14px;
+    }
+    .mini-card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+    }
+    .mini-card h4 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+    }
+    .mini-card p {
+      margin: 0 0 14px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .mini-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      padding: 8px 12px;
+      font-weight: 700;
+      background: #faf7f3;
+    }
+
+    @media (max-width: 860px) {
+      .category-intro { grid-template-columns: 1fr; }
+      .section-nav { justify-content: flex-start; }
+      .product-layout { grid-template-columns: 1fr; }
+      .details-panel { grid-template-columns: 1fr; }
+      .related { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 620px) {
+      .topbar-inner { flex-direction: column; align-items: flex-start; }
+      .page-header { align-items: flex-start; }
+      .category-intro { padding: 22px 18px; }
+      .detail-grid { grid-template-columns: 1fr; }
+      .product-info, .gallery, .details-panel, .related-wrap { padding-left: 18px; padding-right: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html#home" aria-label="Deccan Midwest Supply Co. home">
+        <img src="./assets/logo-emblem.png" alt="Deccan Midwest Supply Co." />
+        <span>Deccan Midwest Supply Co.</span>
+      </a>
+      <a class="cta-btn" href="index.html">Back to Home</a>
+    </div>
+  </header>
+
+  <section class="header-surface">
+    <div class="header-inner">
+      <p class="page-tag">Product category</p>
+      <div class="page-header">
+        <h1 id="pageTitle">Commercial products</h1>
+        <a class="aux-link" href="browse-items.html">Browse items</a>
+      </div>
+      <p id="categorySummary" class="category-summary"></p>
+      <div id="categoryHighlights" class="category-highlights"></div>
+    </div>
+  </section>
+
+  <main>
+    <div class="container">
+      <section class="category-intro" aria-labelledby="buyingTitle">
+        <div>
+          <p class="section-kicker">Category playbook</p>
+          <h2 id="buyingTitle">Source by operating need, then specify the format.</h2>
+          <p>Each section groups the formats buyers typically compare, with the commercial attributes needed for a faster quote conversation.</p>
+        </div>
+        <nav id="sectionNav" class="section-nav" aria-label="Category sections"></nav>
+      </section>
+      <div id="productsRoot" class="product-list"></div>
+    </div>
+  </main>
+
+  <script>
+    const categoryMap = {
+      cups: { label: 'Cups, Lids & Drinkware' },
+      takeout: { label: 'Food Containers & Takeout' },
+      bags: { label: 'Bags & Custom Packaging' },
+      gloves: { label: 'Gloves & Protective Apparel' },
+      tableware: { label: 'Cutlery & Tableware' },
+      wraps: { label: 'Wraps, Foil & Food Storage' },
+      paper: { label: 'Paper & Janitorial' },
+      chemicals: { label: 'Cleaning Chemicals & Supplies' },
+      waste: { label: 'Waste Management' },
+      shipping: { label: 'Packaging & Shipping' }
+    };
+
+    const categoryDescriptions = {
+      cups: 'This category serves restaurants, cafés, coffee shops, convenience stores, catering businesses and other beverage operations. It covers hot beverage cups, cold beverage cups, lids, straws, stirrers, accessories and portion cups with filter options for capacity, material, color, lid compatibility and pack quantity.',
+      takeout: 'This should become one of your largest categories. It includes hinged clamshells, rectangular and round food containers, compartment and meal-prep packs, deli and soup containers, specialty bakery and catering boxes, with filters for size, capacity, material, compartments, lid type and microwave suitability.',
+      bags: 'This is a major category for Deccan Midwest, especially thank-you bags and custom branded packaging. It covers carryout bags, paper bags, food bags and a dedicated custom packaging program for printed bags, logo branding, custom colors, sizes, thicknesses and private labels.',
+      gloves: 'This launch category includes disposable gloves for foodservice and facility use, along with protective apparel like hairnets, aprons, sleeve covers and shoe covers. Website filters can focus on material, size, thickness, texture, powder-free status and case counts.',
+      tableware: 'This category supports restaurants, catering, takeout and events with cutlery, cutlery kits, alternative material options and tableware including paper plates, plastic plates, bowls, trays, napkins and catering serviceware.',
+      wraps: 'This is a recurring-purchase category for commercial kitchens and prep spaces, covering aluminum foil, food wrap, parchment, wax paper, deli sheets and food storage bags. It can later expand into Foil | Film | Paper | Bags & Storage.',
+      paper: 'This category extends Deccan Midwest beyond food packaging and creates recurring facility-supply revenue through paper towels, center-pull and roll towels, tissue, wipes and dispensing systems for restaurants, offices and commercial facilities.',
+      chemicals: 'This category supports kitchen cleaning and facility operations with degreasers, detergents, glass and floor cleaners, sanitizers and cleaning tools. Product documentation should include applicable SDS and safety information rather than broad compliance claims.',
+      waste: 'This is a straightforward, repeat-order category for commercial customers, including can liners, trash bags, recycled liners and different gallon capacities, dimensions, thicknesses, colors and case counts.',
+      shipping: 'This category serves warehouses, distributors, retailers and commercial businesses with corrugated cartons, stretch wrap, pallet wrap, tapes, labels, void fill and other shipping consumables for fulfillment operations.'
+    };
+
+    const categoryHighlights = {
+      cups: ['Hot beverage', 'Cold beverage', 'Lids & straws', 'Capacity filters'],
+      takeout: ['Takeout containers', 'Compartment formats', 'Material options', 'Microwave suitability'],
+      bags: ['Custom print', 'Logo bags', 'Private labeling', 'Request a quote'],
+      gloves: ['Nitrile', 'Vinyl & poly', 'Powder-free', 'Protective apparel'],
+      tableware: ['Cutlery', 'Plates & bowls', 'Wrapped / unwrapped', 'Event serviceware'],
+      wraps: ['Foil', 'Film', 'Parchment', 'Food storage'],
+      paper: ['Paper towels', 'Tissue', 'Wiping products', 'Dispensing'],
+      chemicals: ['Degreasers', 'Glass cleaner', 'Multi-surface', 'SDS support'],
+      waste: ['Can liners', 'Heavy-duty bags', 'Capacity sizing', 'Recycling liners'],
+      shipping: ['Boxes & cartons', 'Tape', 'Stretch wrap', 'Labels']
+    };
+
+    const catalog = {
+      cups: {
+        segments: [
+          {
+            title: 'Hot Beverage',
+            description: 'Single-wall and double-wall cups for coffee, tea and hot beverage service across cafés, convenience stores and quick-service operations.',
+            tags: ['Single-wall', 'Double-wall', 'Hot-cup lids', 'Coffee sleeves'],
+            items: ['Single-wall paper cups', 'Double-wall / insulated cups', 'Hot-cup lids', 'Coffee sleeves'],
+            filters: ['Capacity (oz)', 'Material', 'Color', 'Lid compatibility', 'Pack quantity', 'Case quantity'],
+            photoSet: ['https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=900&q=80']
+          },
+          {
+            title: 'Cold Beverage',
+            description: 'Cold drink packaging for iced coffee, fountain drinks and retail beverage programs using clear, paper and PET / PP formats.',
+            tags: ['Clear cups', 'PET / PP', 'Flat lids', 'Dome lids'],
+            items: ['Clear plastic cold cups', 'Paper cold cups', 'PET / PP cups', 'Flat lids', 'Dome lids', 'Straw-slot lids'],
+            filters: ['Capacity (oz)', 'Material', 'Color', 'Lid compatibility', 'Case quantity'],
+            photoSet: ['https://images.unsplash.com/photo-1554177255-6159f5d7d1c8?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1523906630133-f6934a1ab2b9?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1464306076886-da185f6a9d8f?auto=format&fit=crop&w=900&q=80']
+          },
+          {
+            title: 'Accessories',
+            description: 'Supplemental beverage service items that complete cup programs and improve convenience for retail and service operations.',
+            tags: ['Straws', 'Stirrers', 'Carriers', 'Drink trays'],
+            items: ['Wrapped / unwrapped straws', 'Jumbo straws', 'Cocktail straws', 'Stirrers', 'Cup carriers', 'Drink trays'],
+            filters: ['Material', 'Length', 'Pack quantity', 'Case quantity', 'Color'],
+            photoSet: ['https://images.unsplash.com/photo-1523906630133-f6934a1ab2b9?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=900&q=80']
+          },
+          {
+            title: 'Portion',
+            description: 'Small-format portion cups and matching lids for sauces, condiments and ready-to-serve add-ons.',
+            tags: ['Portion cups', 'Matching lids', 'Condiments', 'Small format'],
+            items: ['Plastic portion cups', 'Soufflé cups', 'Matching lids'],
+            filters: ['Capacity (oz)', 'Material', 'Color', 'Lid compatibility', 'Case quantity'],
+            photoSet: ['https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=900&q=80']
+          }
+        ]
+      },
+      takeout: {
+        segments: [
+          {
+            title: 'Takeout Containers',
+            description: 'Standard takeaway formats for prepared foods, hot meals and grab-and-go retail ordering.',
+            tags: ['Hinged', 'Rectangular', 'Round', 'Compartment'],
+            items: ['Hinged clamshells', 'Rectangular containers', 'Round containers', 'Compartment containers', 'Meal-prep containers'],
+            filters: ['Size', 'Capacity', 'Material', 'Compartment', 'Lid type', 'Case pack'],
+            photoSet: ['https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=900&q=80']
+          },
+          {
+            title: 'Material Options',
+            description: 'Container formats built around serving temperature, durability and packaging requirements across foodservice menus.',
+            tags: ['PP', 'PET', 'Aluminum', 'Paperboard'],
+            items: ['PP plastic containers', 'PET containers', 'Aluminum containers', 'Paperboard containers', 'Bagasse / fiber containers'],
+            filters: ['Material', 'Temperature application', 'Microwave suitability', 'Case pack'],
+            photoSet: ['https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1528712306091-ed0763094c98?auto=format&fit=crop&w=900&q=80']
+          },
+          {
+            title: 'Specialty Containers',
+            description: 'Item-specific packaging for deli service, soup, bakery, sandwich and tamper-evident presentation programs.',
+            tags: ['Deli', 'Soup', 'Bakery', 'Tamper-evident'],
+            items: ['Deli containers', 'Soup containers', 'Portion containers', 'Bakery containers', 'Sandwich / wrap containers', 'Tamper-evident containers'],
+            filters: ['Size', 'Capacity', 'Lid type', 'Material', 'Case pack'],
+            photoSet: ['https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1528712306091-ed0763094c98?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1555126635-3f0fe2d7b91f?auto=format&fit=crop&w=900&q=80']
+          },
+          {
+            title: 'Boxes',
+            description: 'Packaging formats for pizza, bakery and catering programs with presentation and distribution in mind.',
+            tags: ['Pizza', 'Bakery', 'Cake', 'Catering'],
+            items: ['Pizza boxes', 'Bakery boxes', 'Cake boxes', 'Food boxes', 'Catering boxes'],
+            filters: ['Size', 'Material', 'Temperature use', 'Case pack', 'Capacity'],
+            photoSet: ['https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80']
+          }
+        ]
+      },
+      bags: {
+        segments: [
+          {
+            title: 'Carryout Bags',
+            description: 'Retail and restaurant carryout bags for merchandise, takeaway and operational convenience.',
+            tags: ['Thank You', 'T-shirt bags', 'Handled bags', 'Restaurant takeout'],
+            items: ['Thank You T-shirt bags', 'Plain T-shirt bags', 'Merchandise bags', 'Restaurant takeout bags', 'Handled bags'],
+            filters: ['Size', 'Thickness', 'Color', 'Custom print', 'Case quantity'],
+            photoSet: ['https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1528747045269-390fe33c19f2?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80']
+          },
+          {
+            title: 'Paper Bags',
+            description: 'Kraft and paper carryout options for foodservice businesses, retail counters and branded packaging programs.',
+            tags: ['Kraft', 'White paper', 'Handled', 'Restaurant'],
+            items: ['Kraft bags', 'White paper bags', 'SOS bags', 'Handled shopping bags', 'Restaurant bags'],
+            filters: ['Size', 'Color', 'Thickness', 'Handles', 'Case quantity'],
+            photoSet: ['https://images.unsplash.com/photo-1528747045269-390fe33c19f2?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=900&q=80']
+          },
+          {
+            title: 'Food Bags',
+            description: 'Packaging for bakery, produce and food-grade storage handling at the retail or service counter.',
+            tags: ['Bakery', 'Produce', 'Food-grade poly', 'Sandwich'],
+            items: ['Bakery bags', 'Sandwich bags', 'Produce bags', 'Food-grade poly bags'],
+            filters: ['Size', 'Material', 'Thickness', 'Food-grade', 'Case quantity'],
+            photoSet: ['https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80']
+          },
+          {
+            title: 'Custom Packaging Program',
+            description: 'A branded packaging program focused on custom printed bags, restaurant logo packaging and private label solutions.',
+            tags: ['Custom print', 'Logo bags', 'Private labeling', 'Request a quote'],
+            items: ['Custom printed bags', 'Restaurant logo bags', 'Custom colors', 'Custom sizes', 'Custom thicknesses', 'Private / branded packaging', 'Custom cartons where available'],
+            filters: ['Custom size', 'Custom thickness', 'Artwork', 'MOQ', 'Quote support'],
+            photoSet: ['https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1528747045269-390fe33c19f2?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80']
+          }
+        ]
+      },
+      gloves: {
+        segments: [
+          {
+            title: 'Disposable Gloves',
+            description: 'Nitrile, vinyl and polyethylene glove formats for foodservice, prep, sanitation and facility work.',
+            tags: ['Nitrile', 'Vinyl', 'Poly', 'Powder-free'],
+            items: ['Nitrile gloves', 'Vinyl gloves', 'Polyethylene / poly gloves'],
+            filters: ['Material', 'Size', 'Thickness', 'Texture', 'Powder-free', 'Count per box', 'Cases per carton'],
+            photoSet: ['https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=900&q=80']
+          },
+          {
+            title: 'Protective Apparel',
+            description: 'Protective and hygiene products for front-line teams in foodservice and operational environments.',
+            tags: ['Hairnets', 'Aprons', 'Sleeves', 'Shoe covers'],
+            items: ['Hairnets', 'Beard covers', 'Disposable aprons', 'Sleeve covers', 'Shoe covers'],
+            filters: ['Material', 'Size', 'Color', 'Count per pack', 'Case quantity'],
+            photoSet: ['https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1556610961-2feccde880ba?auto=format&fit=crop&w=900&q=80']
+          }
+        ]
+      },
+      tableware: {
+        segments: [
+          {
+            title: 'Cutlery',
+            description: 'Core takeaway and dine-in serviceware for single-use foodservice operations.',
+            tags: ['Forks', 'Knives', 'Spoons', 'Heavy-duty'],
+            items: ['Forks', 'Knives', 'Spoons', 'Teaspoons', 'Soup spoons', 'Heavyweight cutlery', 'Economy cutlery'],
+            filters: ['Material', 'Size', 'Weight / class', 'Wrapped / unwrapped', 'Case quantity'],
+            photoSet: ['https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=900&q=80']
+          },
+          {
+            title: 'Cutlery Kits',
+            description: 'Convenience kits for quick-service, delivery and event programs.',
+            tags: ['Kits', 'Napkins', 'Wrapped', 'Event-ready'],
+            items: ['Fork / knife / spoon kits', 'Napkin + cutlery kits', 'Individually wrapped kits'],
+            filters: ['Material', 'Wrapped / unwrapped', 'Pack quantity', 'Case quantity'],
+            photoSet: ['https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=900&q=80']
+          },
+          {
+            title: 'Alternative Materials',
+            description: 'Wooden and compostable alternatives when verified products are stocked.',
+            tags: ['Wooden', 'Compostable', 'Plant-based', 'Eco options'],
+            items: ['Wooden cutlery', 'Compostable cutlery', 'Plant-based products'],
+            filters: ['Material', 'Color', 'Weight / class', 'Case quantity'],
+            photoSet: ['https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80']
+          },
+          {
+            title: 'Tableware',
+            description: 'Serviceware for dine-in, catering and event operations including plates, bowls, trays and accessories.',
+            tags: ['Plates', 'Bowls', 'Trays', 'Napkins'],
+            items: ['Paper plates', 'Plastic plates', 'Fiber plates', 'Bowls', 'Trays', 'Catering trays', 'Napkins', 'Placemats', 'Tray liners'],
+            filters: ['Material', 'Color', 'Size', 'Weight / class', 'Wrapped / unwrapped', 'Case quantity'],
+            photoSet: ['https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1555126635-3f0fe2d7b91f?auto=format&fit=crop&w=900&q=80']
+          }
+        ]
+      },
+      wraps: {
+        segments: [
+          {
+            title: 'Aluminum',
+            description: 'Foil and pan formats for food prep, roasting and high-temperature service.',
+            tags: ['Heavy-duty foil', 'Pre-cut sheets', 'Aluminum pans', 'Compatible lids'],
+            items: ['Heavy-duty aluminum foil rolls', 'Standard foil', 'Pre-cut foil sheets', 'Pop-up foil sheets', 'Aluminum pans', 'Compatible lids'],
+            filters: ['Material', 'Width', 'Length', 'Capacity', 'Case quantity'],
+            photoSet: ['https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1581287053822-fd7f5ffe1612?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=900&q=80']
+          },
+          {
+            title: 'Food Wrap',
+            description: 'Commercial film and cling wrap solutions for food protection and prep station efficiency.',
+            tags: ['Cling film', 'Plastic wrap', 'Film rolls'],
+            items: ['Commercial cling film', 'Plastic wrap', 'Foodservice film rolls'],
+            filters: ['Width', 'Length', 'Material', 'Case quantity'],
+            photoSet: ['https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1532635241-17e820acc59f?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1528712306091-ed0763094c98?auto=format&fit=crop&w=900&q=80']
+          },
+          {
+            title: 'Paper',
+            description: 'Parchment and paper products used for baking, prep and line support.',
+            tags: ['Parchment', 'Wax paper', 'Deli sheets', 'Pan liners'],
+            items: ['Parchment paper', 'Wax paper', 'Deli sheets', 'Pan liners'],
+            filters: ['Material', 'Size', 'Case quantity', 'Heat use'],
+            photoSet: ['https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=80']
+          },
+          {
+            title: 'Food Storage',
+            description: 'Commercial storage and food prep bags used for portioning, freezer storage and kitchen organization.',
+            tags: ['Freezer bags', 'Zipper bags', 'Sandwich bags', 'Poly bags'],
+            items: ['Food-grade poly bags', 'Freezer bags', 'Zipper bags', 'Sandwich bags', 'Storage bags'],
+            filters: ['Size', 'Material', 'Capacity', 'Case quantity'],
+            photoSet: ['https://images.unsplash.com/photo-1528712306091-ed0763094c98?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80']
+          }
+        ]
+      },
+      paper: {
+        segments: [
+          {
+            title: 'Paper Products',
+            description: 'Bulk paper hand towels, tissue and roll products for kitchen and restroom service.',
+            tags: ['Multifold', 'Roll towels', 'Tissue', 'Jumbo-roll'],
+            items: ['Multifold paper towels', 'Center-pull towels', 'Roll towels', 'Kitchen rolls', 'Bathroom tissue', 'Jumbo-roll tissue', 'Facial tissue'],
+            filters: ['Format', 'Material', 'Roll size', 'Case quantity'],
+            photoSet: ['https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1528747045269-390fe33c19f2?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=900&q=80']
+          },
+          {
+            title: 'Dispensing',
+            description: 'Dispenser systems and supply support for washrooms and high-use service areas.',
+            tags: ['Dispensers', 'Systems', 'Paper towel', 'Tissue'],
+            items: ['Paper towel dispensers', 'Tissue dispensers', 'Related systems'],
+            filters: ['Type', 'Mounting', 'Capacity', 'Case quantity'],
+            photoSet: ['https://images.unsplash.com/photo-1528747045269-390fe33c19f2?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=80']
+          },
+          {
+            title: 'Wiping Products',
+            description: 'General purpose and facility wipe products designed for maintenance and sanitation.',
+            tags: ['Wipes', 'Industrial', 'Foodservice', 'General purpose'],
+            items: ['General-purpose wipes', 'Foodservice wipes', 'Industrial wiping products'],
+            filters: ['Material', 'Use case', 'Pack size', 'Case quantity'],
+            photoSet: ['https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1528747045269-390fe33c19f2?auto=format&fit=crop&w=900&q=80']
+          }
+        ]
+      },
+      chemicals: {
+        segments: [
+          {
+            title: 'Kitchen Cleaning',
+            description: 'Dishwashing, warewashing and degreasing products selected for back-of-house kitchen operations.',
+            tags: ['Degreasers', 'Dishwashing', 'Warewashing', 'Foodservice'],
+            items: ['Degreasers', 'Dishwashing detergent', 'Warewashing products', 'Foodservice cleaning products'],
+            filters: ['Use case', 'Concentration', 'Pack size', 'SDS support'],
+            photoSet: ['https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1528747045269-390fe33c19f2?auto=format&fit=crop&w=900&q=80']
+          },
+          {
+            title: 'Facility Cleaning',
+            description: 'Surface care and maintenance products built for glass, multi-surface and restroom programs.',
+            tags: ['Glass cleaner', 'Floor cleaner', 'Restroom cleaner', 'Multipurpose'],
+            items: ['Glass cleaner', 'Multipurpose cleaner', 'Floor cleaner', 'Restroom cleaner'],
+            filters: ['Use case', 'Concentration', 'Application', 'SDS support'],
+            photoSet: ['https://images.unsplash.com/photo-1528747045269-390fe33c19f2?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=900&q=80']
+          },
+          {
+            title: 'Cleaning Supplies',
+            description: 'Tools and consumables that support daily surface care and floor maintenance programs.',
+            tags: ['Microfiber', 'Brushes', 'Buckets', 'Mops'],
+            items: ['Microfiber cloths', 'Scrub pads', 'Sponges', 'Brushes', 'Spray bottles', 'Buckets', 'Mop heads', 'Mop handles', 'Brooms', 'Dustpans', 'Squeegees'],
+            filters: ['Material', 'Tool type', 'Pack size', 'Case quantity'],
+            photoSet: ['https://images.unsplash.com/photo-1528747045269-390fe33c19f2?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=900&q=80']
+          }
+        ]
+      },
+      waste: {
+        segments: [
+          {
+            title: 'Can Liners / Trash Bags',
+            description: 'Waste-management liners sized to handle operational garbage streams across foodservice and facility environments.',
+            tags: ['High-density', 'Low-density', 'Heavy-duty', 'Recycling'],
+            items: ['High-density liners', 'Low-density liners', 'Heavy-duty bags', 'Clear liners', 'Black liners', 'Recycling liners'],
+            filters: ['Gallon capacity', 'Dimensions', 'Thickness', 'Color', 'Roll / case'],
+            photoSet: ['https://images.unsplash.com/photo-1528747045269-390fe33c19f2?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=80']
+          },
+          {
+            title: 'Waste & Recycling Accessories',
+            description: 'Storage and handling support for waste stream separation and facility efficiency.',
+            tags: ['Recycling', 'Containers', 'Accessories', 'Waste stream'],
+            items: ['Waste containers', 'Recycling containers', 'Related accessories'],
+            filters: ['Capacity', 'Color', 'Container type', 'Case quantity'],
+            photoSet: ['https://images.unsplash.com/photo-1528747045269-390fe33c19f2?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=80']
+          }
+        ]
+      },
+      shipping: {
+        segments: [
+          {
+            title: 'Boxes & Cartons',
+            description: 'Corrugated shipping and master carton options for warehouse and fulfillment operations.',
+            tags: ['Corrugated', 'Master cartons', 'Specialty cartons', 'Shipping'],
+            items: ['Corrugated shipping boxes', 'Master cartons', 'Specialty cartons'],
+            filters: ['Size', 'Board strength', 'Custom packaging', 'Case quantity'],
+            photoSet: ['https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=900&q=80']
+          },
+          {
+            title: 'Films',
+            description: 'Stretch and shrink film products for pallet stabilization and shipping protection.',
+            tags: ['Stretch wrap', 'Pallet wrap', 'Shrink film'],
+            items: ['Stretch wrap', 'Pallet wrap', 'Shrink film'],
+            filters: ['Width', 'Length', 'Gauge', 'Case quantity'],
+            photoSet: ['https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=900&q=80']
+          },
+          {
+            title: 'Tape',
+            description: 'Carton sealing and packing tape for warehouse and shipping workflows.',
+            tags: ['Packing tape', 'Carton sealing', 'Commercial tape'],
+            items: ['Carton-sealing tape', 'Packing tape', 'Commercial packaging tape'],
+            filters: ['Width', 'Length', 'Adhesive type', 'Case quantity'],
+            photoSet: ['https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=80']
+          },
+          {
+            title: 'Labels',
+            description: 'Product ID and shipping labels for cartons, handling, and fulfillment operations.',
+            tags: ['Shipping labels', 'Carton labels', 'Thermal labels'],
+            items: ['Shipping labels', 'Carton labels', 'Handling labels', 'Thermal labels'],
+            filters: ['Size', 'Material', 'Adhesive', 'Case quantity'],
+            photoSet: ['https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=80']
+          },
+          {
+            title: 'Warehouse Packaging',
+            description: 'Supporting materials for pallet protection, securing inventory and shipping safety.',
+            tags: ['Pallet covers', 'Strapping', 'Edge protection', 'Void fill'],
+            items: ['Pallet covers', 'Strapping', 'Edge protection', 'Void fill', 'Other shipping consumables'],
+            filters: ['Material', 'Application', 'Size', 'Case quantity'],
+            photoSet: ['https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=900&q=80', 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=900&q=80']
+          }
+        ]
+      }
+    };
+
+    const pageKey = new URLSearchParams(window.location.search).get('category') || 'cups';
+    const categoryOrder = ['cups', 'takeout', 'bags', 'gloves', 'tableware', 'wraps', 'paper', 'chemicals', 'waste', 'shipping'];
+
+    const title = document.getElementById('pageTitle');
+    const summary = document.getElementById('categorySummary');
+    const highlights = document.getElementById('categoryHighlights');
+    const root = document.getElementById('productsRoot');
+    const sectionNav = document.getElementById('sectionNav');
+    title.textContent = categoryMap[pageKey]?.label || 'Commercial products';
+    summary.textContent = categoryDescriptions[pageKey] || categoryDescriptions.cups;
+    highlights.innerHTML = (categoryHighlights[pageKey] || categoryHighlights.cups).map(item => `<span>${item}</span>`).join('');
+
+    const categoryData = catalog[pageKey] || catalog.cups;
+    sectionNav.innerHTML = categoryData.segments.map((segment, index) => `<a href="#segment-${index + 1}">${segment.title}</a>`).join('');
+    root.innerHTML = categoryData.segments.map((segment, index) => {
+      const detailRows = [
+        ['Focus', segment.title],
+        ['Typical products', segment.items.join(' • ')],
+        ['Popular filters', segment.filters.join(' • ')],
+        ['Applications', segment.description]
+      ];
+
+      return `
+        <article class="product-card" id="segment-${index + 1}">
+          <div class="product-layout">
+            <div class="gallery">
+              <img class="main-photo" src="${segment.photoSet[0]}" alt="${segment.title}" />
+              <div class="thumbs">
+                ${segment.photoSet.map(photo => `<img src="${photo}" alt="${segment.title} view" />`).join('')}
+              </div>
+            </div>
+
+            <div class="product-info">
+              <div class="section-marker"><strong>${String(index + 1).padStart(2, '0')}</strong> Operating section</div>
+              <div class="sku">${segment.title}</div>
+              <h2>${segment.title}</h2>
+              <div class="meta-row">${segment.tags.map(tag => `<span>${tag}</span>`).join('')}</div>
+              <p class="description">${segment.description}</p>
+
+              <div class="segment-list">
+                ${segment.items.map(item => {
+                  const href = `browse-items.html?category=${pageKey}&search=${encodeURIComponent(item)}`;
+                  return `<a class="segment-point" href="${href}">${item}</a>`;
+                }).join('')}
+              </div>
+
+              <div class="detail-grid">
+                <div class="detail-box"><small>Typical use</small><strong>${segment.title}</strong></div>
+                <div class="detail-box"><small>Filter options</small><strong>${segment.filters.slice(0, 2).join(' / ')}</strong></div>
+                <div class="detail-box"><small>Volume fit</small><strong>Case quantities &amp; pack sizing</strong></div>
+                <div class="detail-box"><small>Catalog view</small><strong>Built for operational buyers</strong></div>
+              </div>
+              <div class="buy-actions">
+                <a class="section-cta" href="browse-items.html">Browse ${segment.title}</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="details-panel">
+            <div class="spec-card">
+              <h3>Typical product mix</h3>
+              <table>${detailRows.map(([label, value]) => `
+                <tr>
+                  <th>${label}</th>
+                  <td>${value}</td>
+                </tr>
+              `).join('')}</table>
+            </div>
+            <div class="spec-card">
+              <h3>Filterable attributes</h3>
+              <ul>${segment.filters.map(filter => `<li>${filter}</li>`).join('')}</ul>
+            </div>
+          </div>
+        </article>
+      `;
+    }).join('');
+  </script>
+</body>
+</html>

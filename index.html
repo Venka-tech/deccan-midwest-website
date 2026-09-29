@@ -1,0 +1,655 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#3C1A3D">
+<title>Deccan Midwest Supply Co. — Enterprise Supply Network</title>
+<meta name="description" content="Deccan Midwest Supply Co. — B2B foodservice packaging, disposables and facility essentials sourced through trusted manufacturing partners and delivered through Midwest distribution.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --plum:#3C1A3D;
+  --gold:#C9A968;
+  --navy:#0D2340;
+  --ivory:#FDFBF7;
+  --cream:#F4EEE7;
+  --ink:#162235;
+  --muted:#6C675F;
+  --line:rgba(13,35,64,.12);
+  --max:1420px;
+  --sx:clamp(20px,5vw,74px);
+  --sy:clamp(86px,8vw,128px);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"DM Sans",sans-serif;background:var(--ivory);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+body.lock{overflow:hidden}
+a{text-decoration:none;color:inherit}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+img{display:block;max-width:100%;height:auto;filter:contrast(1.06) saturate(1.08)}
+h1,h2,h3,h4{font-family:"Manrope",sans-serif;letter-spacing:-.02em}
+
+.hero h2,
+.storyCopy h2,
+.networkHero h2,
+.sectors h2,
+.ctaBox h2,
+.sectionHead h2,
+.introCopy h1,
+.modalTop h3{text-shadow:0 2px 18px rgba(0,0,0,.18)}
+
+/* INTRO */
+#intro{
+  position:fixed;inset:0;z-index:1000;
+  background:
+    linear-gradient(180deg,rgba(13,35,64,.18),rgba(13,35,64,.44)),
+    url("./assets/intro-cargo.jpg") center/cover no-repeat;
+  color:#fff;
+  transition:opacity .7s ease,visibility .7s ease;
+  background-color:#0d2340;
+}
+#intro.hide{opacity:0;visibility:hidden;pointer-events:none}
+.introVignette{position:absolute;inset:0;background:radial-gradient(circle at center,rgba(0,0,0,.08) 25%,rgba(4,9,16,.46) 100%)}
+.introCopy{position:absolute;left:7vw;top:19%;max-width:620px}
+.introLogo{display:flex;align-items:center;gap:18px;margin-bottom:20px}
+.introLogo img{width:92px;height:92px;object-fit:contain;filter:drop-shadow(0 12px 26px rgba(0,0,0,.28))}
+.introBrandBlock{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.introBrandText{font-family:"Cinzel",serif;font-size:clamp(20px,1.9vw,30px);letter-spacing:.07em;text-transform:uppercase;color:#f4d9a2;line-height:1;font-weight:700;text-shadow:0 0 18px rgba(201,169,104,.22),0 2px 10px rgba(0,0,0,.3)}
+.introBrandSub{font-family:"Cinzel",serif;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.8);line-height:1.2;text-shadow:0 2px 6px rgba(0,0,0,.28)}
+.introCopy .eyebrow{color:#f0d5a1}
+.introCopy h1{font:700 clamp(48px,6vw,92px)/.92 "Cinzel",serif;letter-spacing:-.045em;margin:12px 0 18px}
+.introCopy p{max-width:500px;color:rgba(255,255,255,.82);font-size:18px;line-height:1.75;font-weight:500}
+.introCta{
+  position:absolute;left:50%;bottom:52px;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:13px
+}
+.openCargo{
+  width:52px;height:52px;border-radius:50%;border:1px solid var(--gold);
+  background:rgba(13,35,64,.72);color:white;font-size:22px;
+  box-shadow:0 0 0 8px rgba(201,169,104,.07),0 0 35px rgba(201,169,104,.18)
+}
+.introCta span{font-family:"Cinzel",serif;letter-spacing:.26em;text-transform:uppercase;font-size:13px}
+.skipIntro{position:absolute;right:20px;top:20px;border:1px solid rgba(255,255,255,.22);background:rgba(13,35,64,.45);color:white;border-radius:999px;padding:9px 13px}
+
+/* HEADER */
+.site{opacity:0;visibility:hidden;transition:opacity .45s ease}
+.site.ready{opacity:1;visibility:visible}
+.header{
+  position:fixed;z-index:300;top:14px;left:50%;transform:translateX(-50%);
+  width:min(calc(100% - 30px),var(--max));min-height:70px;
+  display:grid;grid-template-columns:minmax(180px,250px) 1fr auto;align-items:center;gap:22px;
+  padding:8px 10px 8px 14px;border-radius:18px;
+  border:1px solid rgba(201,169,104,.22);
+  background:linear-gradient(90deg,rgba(13,35,64,.88),rgba(60,26,61,.88));
+  backdrop-filter:blur(18px);box-shadow:0 18px 52px rgba(0,0,0,.18);color:white
+}
+.brand{
+  display:inline-flex;align-items:center;justify-content:flex-start;gap:12px;
+  width:100%;max-width:240px;height:auto;padding:0;border:none;background:transparent;border-radius:0;
+  transition:transform .2s ease,opacity .2s ease;
+}
+.brand:hover{transform:translateY(-1px);opacity:.96}
+.brand img{width:86px;height:86px;object-fit:contain;background:transparent;border-radius:0;flex-shrink:0;filter:drop-shadow(0 6px 18px rgba(201,169,104,.24))}
+.brandCopy{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;max-width:100%}
+.brandText{
+  font-family:"Cinzel",serif;
+  font-size:clamp(16px,1.55vw,24px);
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  color:#f4d9a2;
+  white-space:nowrap;
+  line-height:1.15;
+  text-align:left;
+  text-shadow:0 0 18px rgba(201,169,104,.28),0 2px 10px rgba(0,0,0,.35);
+  font-weight:700;
+}
+.brandSub{
+  display:none;
+}
+.nav{display:flex;justify-content:center;gap:28px}
+.nav a{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;color:rgba(255,255,255,.8)}
+.nav a:hover{color:var(--gold)}
+.quoteBtn{border:0;border-radius:12px;background:var(--gold);color:var(--navy);font-weight:900;padding:13px 17px}
+.menuBtn{display:none}
+
+/* SHARED */
+section{position:relative}
+.wrap{max-width:var(--max);margin:auto}
+.eyebrow{font-size:10px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;color:var(--plum)}
+.sectionHead{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:end;margin-bottom:40px}
+.sectionHead h2{margin:0;font-size:clamp(42px,5vw,78px);line-height:.96;letter-spacing:-.055em}
+.sectionHead p{margin:0;color:var(--muted);font-size:18px;line-height:1.75}
+
+/* HERO */
+.hero{
+  min-height:100vh;padding:145px var(--sx) 70px;color:white;
+  display:grid;align-items:end;
+  background:
+    linear-gradient(90deg,rgba(13,35,64,.86) 0%,rgba(13,35,64,.62) 42%,rgba(60,26,61,.26) 100%),
+    url("./assets/hero-milwaukee.jpg") center center/cover no-repeat;
+  background-color:#081b2d;
+}
+.heroInner{max-width:var(--max);width:100%;margin:auto}
+.hero h2{max-width:980px;margin:0;font:600 clamp(52px,7vw,106px)/.9 "Cinzel",serif;letter-spacing:-.05em}
+.hero h2 span{color:#f0d5a1}
+.heroLead{max-width:720px;font-size:20px;line-height:1.75;color:rgba(255,255,255,.88);margin:24px 0 0;font-weight:500}
+.heroActions{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 18px;border-radius:12px;font-size:12px;font-weight:900}
+.btn.primary{background:var(--gold);color:var(--navy)}
+.btn.ghost{border:1px solid rgba(255,255,255,.32);color:white;background:rgba(255,255,255,.05)}
+
+/* STORY */
+.story{
+  padding:var(--sy) var(--sx);
+  background:
+    linear-gradient(90deg,rgba(253,251,247,.96) 0%,rgba(253,251,247,.94) 44%,rgba(253,251,247,.74) 100%),
+    url("./assets/story-hyderabad.jpg") center center/cover no-repeat;
+  background-color:#f4efe7;
+}
+.storyGrid{max-width:var(--max);margin:auto;display:grid;grid-template-columns:1fr 1fr;min-height:600px;align-items:center}
+.storyCopy{max-width:650px}
+.storyCopy h2{margin:10px 0 20px;font:600 clamp(42px,5vw,78px)/.95 "Cinzel",serif;color:var(--plum)}
+.storyCopy p{font-size:18px;line-height:1.8;color:#363d46;font-weight:500}
+.storyStats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:26px}
+.storyStats div{padding:16px;border-radius:14px;background:rgba(255,255,255,.82);border:1px solid rgba(201,169,104,.24);backdrop-filter:blur(8px)}
+.storyStats strong{display:block;color:var(--plum);font-size:18px}.storyStats span{font-size:10px;color:var(--muted)}
+
+/* NETWORK */
+.dark{padding:var(--sy) var(--sx);background:#071522;color:white}
+.mapStage{
+  position:relative;max-width:var(--max);aspect-ratio:3 / 2;margin:auto;border-radius:28px;overflow:hidden;
+  border:1px solid rgba(201,169,104,.24);box-shadow:0 28px 80px rgba(0,0,0,.32);
+  background:#071522
+}
+.mapStage>img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;filter:brightness(.98) contrast(1.04) saturate(1.04)}
+
+/* PRODUCTS */
+.light{padding:var(--sy) var(--sx);background:var(--ivory)}
+.productBanner{max-width:var(--max);margin:0 auto 40px;border-radius:26px;overflow:hidden;box-shadow:none;background:transparent}
+.productBanner img{display:block;width:100%;height:auto;max-height:420px;aspect-ratio:2.7/1;object-fit:contain;object-position:center;filter:contrast(1.04) saturate(1.12) brightness(.98);margin:0 auto;background:transparent;border:0;padding:0}
+.filters{display:flex;gap:8px;overflow:auto;margin:32px 0 22px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.filter{padding:11px 14px;border:1px solid transparent;border-radius:999px;background:transparent;color:#756e67;font-size:11px;font-weight:800}
+.filter.active{background:rgba(60,26,61,.07);border-color:rgba(60,26,61,.12);color:var(--plum)}
+.productGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{padding:16px;border:1px solid var(--line);border-radius:21px;background:#fff;transition:.25s ease}
+.card:hover{transform:translateY(-6px);box-shadow:0 22px 54px rgba(13,35,64,.1)}
+.productArt{height:155px;border-radius:15px;background:linear-gradient(145deg,#f8f2ea,#ede2d4);display:grid;place-items:center;overflow:hidden}
+.productArt .shape{width:82px;height:82px;border-radius:20px;background:linear-gradient(145deg,#fff,#d7cdc2);box-shadow:0 16px 30px rgba(13,35,64,.12)}
+.shape.bag{height:112px;border-radius:8px;background:linear-gradient(145deg,#ead9bf,#ceb18b)}
+.shape.roll{border-radius:50%;background:radial-gradient(circle,#b6a78e 0 16%,#f0e7dc 17% 35%,#c8baa6 36% 52%,#f8f1e7 53%)}
+.shape.glove{height:100px;background:linear-gradient(145deg,#d6e4e8,#a7c0c8);clip-path:polygon(19% 14%,30% 0,41% 7%,48% 0,57% 8%,64% 0,72% 9%,78% 3%,87% 18%,83% 56%,97% 69%,87% 89%,65% 77%,62% 100%,26% 100%,24% 66%,5% 62%,3% 47%,17% 48%)}
+.card h3{margin:14px 0 7px}.card p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}.badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}.badges span{padding:5px 7px;border-radius:8px;background:#f4efe9;font-size:8px;font-weight:800}
+
+/* SECTORS */
+.sectors{
+  padding:var(--sy) var(--sx);color:white;
+  background:
+    linear-gradient(90deg,rgba(60,26,61,.9),rgba(13,35,64,.72)),
+    url("./assets/who-we-serve.jpg") center/cover no-repeat;
+  background-color:#1a2134;
+}
+.sectorsGrid{max-width:var(--max);margin:auto;display:grid;grid-template-columns:.82fr 1.18fr;gap:40px;align-items:end}
+.sectors h2{font:600 clamp(48px,6vw,88px)/.92 "Cinzel",serif;margin:10px 0}.sectors p{color:rgba(255,255,255,.82);line-height:1.75;font-weight:500}
+.sectorCards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.sector{
+  position:relative;display:flex;flex-direction:column;justify-content:space-between;min-height:190px;
+  text-align:left;padding:20px 18px 18px;border-radius:20px;border:1px solid rgba(255,255,255,.12);
+  background:linear-gradient(180deg,rgba(7,21,34,.58),rgba(7,21,34,.76));
+  color:white;backdrop-filter:blur(10px);box-shadow:0 18px 30px rgba(0,0,0,.12);overflow:hidden;
+}
+.sector::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,169,104,.12),transparent 42%,transparent);pointer-events:none}
+.sector:hover,.sector.active{border-color:rgba(201,169,104,.9);background:linear-gradient(180deg,rgba(201,169,104,.14),rgba(7,21,34,.8));transform:translateY(-2px);box-shadow:0 24px 40px rgba(0,0,0,.18)}
+.sector span{position:relative;z-index:1;color:var(--gold);font-size:10px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}
+.sector strong{position:relative;z-index:1;display:block;margin-top:18px;font-size:clamp(1.2rem,1.8vw,1.7rem);line-height:1.2}
+.sector small{position:relative;z-index:1;margin-top:12px;color:rgba(255,255,255,.7);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.sector::after{content:"View sector →";position:relative;z-index:1;margin-top:18px;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.sectorsAction{margin-top:18px;display:flex;justify-content:flex-start}
+
+/* STANDARDS */
+.stdGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:44px}
+.std{padding:22px;border:1px solid var(--line);border-radius:20px;background:white;min-height:220px}
+.std>span{color:var(--gold);font-weight:900}.std small{display:block;margin-top:34px;color:#8f887f;font-size:8px;letter-spacing:.14em}.std strong{display:block;margin:8px 0}.std p{margin:0;color:var(--muted);font-size:13px;line-height:1.65}
+
+/* JOIN US / CAREERS */
+.careers{padding:var(--sy) var(--sx);background:linear-gradient(180deg,#f4efe7 0%,#fdfbf7 100%)}
+.careersWrap{max-width:var(--max);margin:auto;display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:stretch}
+.careersIntro{padding:32px 30px;border:1px solid rgba(60,26,61,.08);border-radius:28px;background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(246,239,232,.9));box-shadow:0 20px 44px rgba(13,35,64,.04)}
+.careersIntro h2{margin:16px 0 18px;font:600 clamp(38px,4vw,58px)/.96 "Cinzel",serif;color:var(--plum)}
+.careersIntro p{margin:0;color:var(--muted);font-size:17px;line-height:1.8}
+.careerBullets{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:12px}
+.careerBullets li{display:flex;align-items:flex-start;gap:10px;color:var(--ink);font-size:15px;line-height:1.7;font-weight:700}
+.careerBullets li::before{content:"✓";display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:rgba(201,169,104,.18);color:var(--plum);font-size:12px;font-weight:900;flex-shrink:0}
+.careersPanel{display:grid;gap:16px}
+.careersCard{padding:22px 20px;border:1px solid var(--line);border-radius:22px;background:white;box-shadow:0 18px 36px rgba(13,35,64,.04)}
+.careersCard small{display:block;color:var(--gold);font-size:9px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}
+.careersCard strong{display:block;margin-top:12px;font-size:26px;line-height:1.2;color:var(--plum)}
+.careersCard p{margin:12px 0 0;color:var(--muted);font-size:14px;line-height:1.65}
+.careersAction{display:flex;justify-content:flex-start;align-items:center;gap:12px;margin-top:20px}
+.careersAction .btn{min-height:48px;padding:0 20px;border-radius:12px}
+.showMoreRow{display:flex;justify-content:flex-end;margin-top:20px}
+
+/* CTA / PROCUREMENT */
+.cta{
+  padding:90px var(--sx);color:white;
+  background:
+    linear-gradient(90deg,rgba(60,26,61,.94),rgba(13,35,64,.72)),
+    url("./assets/procurement.jpg") center/cover no-repeat;
+  background-color:#131d2b;
+}
+.ctaBox{max-width:var(--max);margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;padding:48px;border:1px solid rgba(255,255,255,.12);border-radius:26px;background:rgba(10,20,30,.22);backdrop-filter:blur(5px)}
+.ctaBox h2{font:600 clamp(42px,5vw,76px)/.98 "Cinzel",serif;margin:10px 0;color:#f0d5a1}.ctaBox p{color:rgba(255,255,255,.82);line-height:1.75;font-weight:500}
+
+/* FOOTER */
+.footer{
+  position:relative;padding:82px var(--sx) 28px;color:white;
+  background:
+    linear-gradient(180deg,rgba(13,35,64,.64),rgba(16,9,18,.9)),
+    url("./assets/contact-footer.jpg") center center / cover no-repeat;
+  background-color:#101a2e;
+  background-attachment:scroll;
+}
+.footerIn{max-width:var(--max);margin:auto;display:grid;grid-template-columns:1.05fr 1fr;gap:70px;position:relative;z-index:2}
+.footBrand{display:flex;gap:20px;align-items:flex-start}.footLogo{display:inline-flex;flex-shrink:0}.footBrand img{width:82px;height:82px;object-fit:contain;filter:drop-shadow(0 10px 26px rgba(0,0,0,.3))}
+.footBrand strong{display:block;font-family:"Cinzel",serif;font-size:22px;letter-spacing:.05em;line-height:1.2}.footBrand p{max-width:430px;color:rgba(255,255,255,.62);line-height:1.7}.footerKicker{margin:0 0 10px;color:var(--gold)!important;font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:900}.footerActions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.footerAction{display:inline-flex;align-items:center;justify-content:center;padding:11px 15px;border-radius:10px;background:var(--gold);color:var(--navy);font-size:12px;font-weight:900}.footerAction.secondary{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:white}
+.footGroups{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:30px}.footGroups small{display:block;color:var(--gold);font-weight:900;font-size:9px;letter-spacing:.14em;margin-bottom:14px}.footGroups a,.footGroups span,.footGroups button{display:block;color:rgba(255,255,255,.68);font-size:12px;margin-bottom:10px;line-height:1.4}.footGroups a:hover,.footGroups button:hover{color:white}
+.footGroups button{padding:0;border:0;background:transparent;text-align:left}
+.socialContact{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0 0}
+.footGroups .socialContact{display:block;margin-top:0}
+.socialLabel{margin-right:4px;color:rgba(255,255,255,.5);font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.socialLink{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.05);color:var(--gold);font-family:"Manrope",sans-serif;font-size:11px;font-weight:900;line-height:1;transition:transform .2s ease,border-color .2s ease,color .2s ease,background .2s ease}
+.socialLink:hover{transform:translateY(-1px);border-color:rgba(201,169,104,.8);background:rgba(201,169,104,.08);color:#fff}
+.footerBottom{max-width:var(--max);margin:52px auto 0;padding-top:18px;border-top:1px solid rgba(201,169,104,.22);display:flex;justify-content:space-between;gap:20px;color:rgba(255,255,255,.44);font-size:11px;position:relative;z-index:2}
+
+/* MODAL */
+
+.featureSection{border-top:1px solid rgba(13,35,64,.08)}
+.solutionGrid,.resourceGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:28px}
+.solutionCard,.resourceCard{padding:26px;border:1px solid var(--line);border-radius:22px;background:#fff;box-shadow:0 18px 40px rgba(13,35,64,.04)}
+.solutionCard span{display:block;color:var(--gold);font-weight:900;font-size:12px;letter-spacing:.12em}.solutionCard strong,.resourceCard strong{display:block;margin-top:14px;color:var(--plum);font-size:21px}.solutionCard p,.resourceCard p{color:var(--muted);line-height:1.7;font-size:14px}.resourceCard small{color:var(--gold);font-weight:900;letter-spacing:.13em}.resourceCard a{color:var(--plum);font-weight:900;text-decoration:none}
+.customSection{position:relative;padding:var(--sy) var(--sx);min-height:620px;display:flex;align-items:center;background:url("./assets/procurement.jpg") center/cover no-repeat;color:white}.customShade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,35,64,.96) 0%,rgba(13,35,64,.83) 48%,rgba(13,35,64,.35) 100%)}.customInner{position:relative;z-index:1}.customInner h2{max-width:820px;margin:14px 0 20px;font:600 clamp(40px,5vw,70px)/1 "Cinzel",serif}.customInner>p{max-width:760px;line-height:1.8;color:rgba(255,255,255,.82)}.customSteps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:30px 0}.customSteps div{padding:18px;border:1px solid rgba(255,255,255,.15);border-radius:16px;background:rgba(255,255,255,.06);backdrop-filter:blur(10px)}.customSteps span{display:block;color:var(--gold);font-size:11px;font-weight:900;margin-bottom:10px}.customSteps strong{font-size:14px}
+.cardQuote{margin-top:18px;width:100%;padding:11px 13px;border:1px solid rgba(60,26,61,.15);border-radius:10px;background:var(--plum);color:white;font-weight:900;cursor:pointer}.cardQuote:hover{background:var(--navy)}
+.contactSection{position:relative;padding:var(--sy) var(--sx);background:url("./assets/contact-footer.jpg") center/cover no-repeat;color:white}.contactOverlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,35,64,.94),rgba(13,35,64,.52))}.contactInner{position:relative;z-index:1;display:grid;grid-template-columns:1.3fr .7fr;gap:40px;align-items:center}.contactInner h2{font:600 clamp(40px,5vw,68px)/1 "Cinzel",serif;margin:14px 0 18px}.contactInner p{max-width:700px;color:rgba(255,255,255,.78);line-height:1.8}.contactCard{padding:28px;border:1px solid rgba(255,255,255,.18);border-radius:22px;background:rgba(13,35,64,.62);backdrop-filter:blur(12px);display:grid;gap:14px}.contactCard small{color:var(--gold);font-weight:900;letter-spacing:.12em}.contactCard strong{font-size:25px}.contactCard a{color:white;text-decoration:none}.contactCard .btn{margin-top:8px}
+.modal{position:fixed;inset:0;z-index:2000;display:none;place-items:center;padding:20px;background:rgba(4,16,31,.76);backdrop-filter:blur(12px)}
+.modal.open{display:grid}
+.modalCard{width:min(720px,100%);max-height:92vh;overflow:auto;padding:28px;border-radius:24px;background:var(--ivory)}
+.modalTop{display:flex;justify-content:space-between;gap:20px}.modalTop h3{margin:0;font-size:34px}.close{width:40px;height:40px;border:0;border-radius:10px;background:var(--navy);color:white}
+.formGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}.field{display:grid;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:9px;font-weight:900;letter-spacing:.1em}.field input,.field select,.field textarea{width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:11px;background:white}.field textarea{min-height:110px}.submit{margin-top:14px;width:100%;min-height:50px;border:0;border-radius:12px;background:var(--plum);color:white;font-weight:900}.success{display:none;margin-top:12px;padding:12px;border-radius:10px;background:#edf6ef;color:#25482e}.success.show{display:block}
+
+@media(max-width:1050px){
+ .nav{display:none}.menuBtn{display:block;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:white;border-radius:10px;width:42px;height:42px}
+ .header{grid-template-columns:1fr auto auto}.storyGrid,.sectorsGrid,.ctaBox,.sectionHead{grid-template-columns:1fr}
+ .productGrid,.stdGrid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:700px){
+ :root{--sx:18px;--sy:78px}
+ .header{width:calc(100% - 20px)}.brand img{width:165px}.quoteBtn{display:none}
+ .hero{padding-top:120px;min-height:90vh}.hero h2{font-size:48px}.heroLead{font-size:16px;line-height:1.7}
+ .introCopy{left:20px;right:20px;top:18%}.introCopy h1{font-size:50px;line-height:1}.introCopy p{font-size:15px;line-height:1.7}.introBrand{width:70vw}
+ .sectionHead h2,.storyCopy h2,.sectors h2,.ctaBox h2{font-size:clamp(2.2rem,9vw,3.4rem);line-height:1.02}
+ .sectionHead p,.storyCopy p,.ctaBox p,.sectors p{font-size:15px;line-height:1.7}
+ .storyStats,.productGrid,.stdGrid,.sectorCards{grid-template-columns:1fr}
+ .footerIn,.footGroups{grid-template-columns:1fr}.footerBottom{flex-direction:column}
+ .formGrid{grid-template-columns:1fr}.field.full{grid-column:auto}
+ .modalCard{padding:20px}.modalTop h3{font-size:28px}
+}
+@media(max-width:980px){.solutionGrid,.resourceGrid{grid-template-columns:repeat(2,1fr)}.customSteps{grid-template-columns:repeat(2,1fr)}.contactInner{grid-template-columns:1fr}.filters{overflow-x:auto;flex-wrap:nowrap;padding-bottom:8px}.filter{white-space:nowrap}}
+@media(max-width:620px){.solutionGrid,.resourceGrid,.customSteps{grid-template-columns:1fr}.customSection{min-height:auto}.contactCard{padding:22px}}
+</style>
+</head>
+<body class="lock">
+
+<section id="intro">
+  <div class="introVignette"></div>
+  <div class="introCopy">
+    <div class="introLogo">
+      <img src="./assets/logo-emblem.png" alt="Deccan Midwest emblem">
+      <div class="introBrandBlock">
+        <span class="introBrandText">DECCAN MIDWEST<br>SUPPLY CO.</span>
+        <span class="introBrandSub">FOODSERVICE • PACKAGING • FACILITY ESSENTIALS</span>
+      </div>
+    </div>
+    <h1>Enterprise supply,<br>unboxed.</h1>
+    <p>Foodservice packaging, disposables and facility essentials — sourced through trusted manufacturing partners and built for Midwest commercial demand.</p>
+  </div>
+  <div class="introCta">
+    <button class="openCargo" id="openCargo" aria-label="Open website">→</button>
+    <span>Tap to unbox enterprise essentials</span>
+  </div>
+  <button class="skipIntro" id="skipIntro">Skip intro</button>
+</section>
+
+<div class="site" id="site">
+<header class="header">
+  <a class="brand" href="index.html#home" aria-label="Deccan Midwest Supply Co. home">
+    <img src="./assets/logo-emblem.png" alt="Deccan Midwest Supply Co. emblem logo">
+    <span class="brandCopy">
+      <span class="brandText">DECCAN MIDWEST<br>SUPPLY CO.</span>
+    </span>
+  </a>
+  <nav class="nav"><a href="#home">Home</a><a href="#products">Products</a><a href="#sectors">Industries</a><a href="#custom">Custom Packaging</a><a href="#network">Sourcing</a><a href="#story">Our Story</a><a href="careers.html">Careers</a></nav>
+  <button class="quoteBtn openQuote">Wholesale Access ↗</button>
+  <button class="menuBtn">☰</button>
+</header>
+
+<section class="hero" id="home">
+  <div class="heroInner">
+    <p class="eyebrow" style="color:#f0d5a1">U.S. B2B DISTRIBUTION • FOOD & FACILITY ESSENTIALS</p>
+    <h2>Global sourcing.<br><span>Local impact.</span></h2>
+    <p class="heroLead">Deccan Midwest connects trusted manufacturing partners with enterprise buyers who need scalable packaging, disposable and facility supply programs without unnecessary complexity.</p>
+    <div class="heroActions"><a class="btn primary" href="#products">Explore Product Lines</a><a class="btn ghost" href="#network">Trace the Supply Network ↓</a></div>
+  </div>
+</section>
+
+<section class="story" id="story">
+  <div class="storyGrid">
+    <div class="storyCopy">
+      <p class="eyebrow">OUR STORY</p>
+      <h2>From Deccan<br>to the Midwest.</h2>
+      <p>Deccan Midwest brings together verified manufacturing capability in India with a disciplined Midwest distribution model. Our focus is simple: source responsibly, document clearly and deliver consistently.</p>
+      <p>From foodservice packaging to disposables and facility essentials, we help businesses simplify procurement through dependable products and practical fulfillment planning.</p>
+      <div class="storyStats">
+        <div><strong>India</strong><span>Source Network</span></div>
+        <div><strong>Midwest</strong><span>Distribution View</span></div>
+        <div><strong>Enterprise</strong><span>Buying Focus</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dark" id="network">
+  <div class="mapStage">
+    <img src="./assets/Sourcing.png" alt="Deccan Midwest sourcing network">
+  </div>
+</section>
+
+<section class="light" id="products">
+  <div class="wrap">
+    <div class="sectionHead">
+      <div><p class="eyebrow">PRODUCT LINEUP</p><h2>High-velocity essentials.<br>Built around real operations.</h2></div>
+      <p>Filter the lineup by operating category. Each card surfaces use-case, compliance and procurement information without forcing buyers through a catalog maze.</p>
+    </div>
+    <div class="productBanner"><img src="./assets/products-lineup.jpg" alt="Commercial foodservice packaging and facility essentials"></div>
+    <div class="filters">
+      <button class="filter active" data-cat="drinkware">Cups & Drinkware</button>
+      <button class="filter" data-cat="takeout">Food Containers</button>
+      <button class="filter" data-cat="bags">Bags & Custom</button>
+      <button class="filter" data-cat="gloves">Gloves & PPE</button>
+      <button class="filter" data-cat="tableware">Cutlery & Tableware</button>
+      <button class="filter" data-cat="wraps">Wraps & Foil</button>
+      <button class="filter" data-cat="paper">Paper & Janitorial</button>
+      <button class="filter" data-cat="chemicals">Cleaning Chemicals</button>
+      <button class="filter" data-cat="waste">Waste Management</button>
+      <button class="filter" data-cat="shipping">Packaging & Shipping</button>
+    </div>
+    <div class="productGrid" id="productGrid"></div>
+    <div class="showMoreRow">
+      <a class="btn primary" href="products.html">Explore Product Catalog →</a>
+    </div>
+  </div>
+</section>
+
+<section class="sectors" id="sectors">
+  <div class="sectorsGrid">
+    <div>
+      <p class="eyebrow" style="color:var(--gold)">CONNECTED DEMAND</p>
+      <h2>Who we serve.</h2>
+      <p>Commercial operators rely on dependable supply programs across foodservice, facilities, hospitality and distribution.</p>
+    </div>
+    <div>
+      <div class="sectorCards">
+        <a class="sector active" href="industries.html" data-title="Commercial Food Operations"><span>01</span><strong>Restaurants & Food Chains</strong><small>Foodservice & beverage</small></a>
+        <a class="sector" href="industries.html" data-title="Facility / Janitorial Services"><span>02</span><strong>Commercial Facilities</strong><small>Janitorial & upkeep</small></a>
+        <a class="sector" href="industries.html" data-title="Hospitality / Catering"><span>03</span><strong>Hospitality & Catering</strong><small>Guest services & events</small></a>
+        <a class="sector" href="industries.html" data-title="Regional Wholesalers"><span>04</span><strong>Distributor Partners</strong><small>Resale & program support</small></a>
+      </div>
+      <div class="sectorsAction">
+        <a class="btn primary" href="industries.html">Explore More →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="customSection" id="custom">
+  <div class="customShade"></div>
+  <div class="wrap customInner">
+    <p class="eyebrow" style="color:var(--gold)">CUSTOM PACKAGING</p>
+    <h2>Put your brand on the package your customer carries.</h2>
+    <p>Custom carryout bags and selected packaging formats can be developed around your artwork, size, material, quantity and delivery requirements.</p>
+    <div class="customSteps">
+      <div><span>01</span><strong>Share artwork & requirements</strong></div>
+      <div><span>02</span><strong>Confirm material, size & MOQ</strong></div>
+      <div><span>03</span><strong>Review sample / production details</strong></div>
+      <div><span>04</span><strong>Approve and schedule supply</strong></div>
+    </div>
+    <a class="btn primary" href="custom-packaging/quote.html">Request Custom Packaging Quote ↗</a>
+  </div>
+</section>
+
+<section class="light" id="standards">
+  <div class="wrap">
+    <div class="sectionHead">
+      <div><p class="eyebrow">PROCUREMENT CONFIDENCE</p><h2>Documentation matters<br>as much as the product.</h2></div>
+      <p>Enterprise buyers need traceability, specifications and documentation. Deccan Midwest structures those requests into the sourcing workflow.</p>
+    </div>
+    <div class="stdGrid">
+      <article class="std"><span>01</span><small>FOOD CONTACT</small><strong>FDA Documentation</strong><p>Food-contact and supplier documentation requested where applicable to the specific SKU.</p></article>
+      <article class="std"><span>02</span><small>MATERIAL / CHEMICAL</small><strong>TSCA Support</strong><p>Import and material documentation coordinated where relevant to regulated categories.</p></article>
+      <article class="std"><span>03</span><small>SAFETY DATA</small><strong>SDS Requests</strong><p>Safety Data Sheet requests supported for applicable facility and chemical-adjacent products.</p></article>
+      <article class="std"><span>04</span><small>PROGRAM CONTROL</small><strong>Specification Review</strong><p>Pack, material, dimensions, use-case and commercial requirements reviewed before launch.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="careers" id="careers">
+  <div class="careersWrap">
+    <div class="careersIntro">
+      <p class="eyebrow">Join Us</p>
+      <h2>Build your career with a team that keeps supply moving.</h2>
+      <p>We’re looking for people who care about execution, service, and strong commercial relationships. If you enjoy organized problem solving and dependable communication, we’d like to hear from you.</p>
+      <ul class="careerBullets">
+        <li>Collaborative team culture with clear accountability.</li>
+        <li>Operational focus across sourcing, fulfillment and customer support.</li>
+        <li>Growth opportunities in a scaling supply network.</li>
+      </ul>
+      <div class="careersAction">
+        <a class="btn primary" href="careers.html">Explore Careers</a>
+      </div>
+    </div>
+
+    <div class="careersPanel">
+      <article class="careersCard">
+        <small>Our culture</small>
+        <strong>Commercial thinking. Operational discipline.</strong>
+        <p>We value people who move quickly, communicate clearly, and take ownership from first inquiry to final delivery.</p>
+      </article>
+
+      <article class="careersCard">
+        <small>What we look for</small>
+        <strong>Curiosity, execution, reliability.</strong>
+        <p>Strong partners in sales, procurement, operations, and systems help us build a dependable Midwest supply model.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="ctaBox">
+    <div><p class="eyebrow" style="color:var(--gold)">WHOLESALE ACCESS</p><h2>Build a supply program around your operation.</h2></div>
+    <div><p>Tell us your core SKUs, monthly volume, location and preferred delivery model. We’ll structure the next step around the actual buying requirement.</p><button class="btn primary openQuote">Start a Wholesale Conversation ↗</button></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footerIn">
+    <div class="footBrand">
+      <a class="footLogo" href="index.html#home" aria-label="Deccan Midwest Supply Co. home"><img src="./assets/logo-emblem.png" alt="Deccan Midwest Supply Co. logo"></a>
+      <div>
+        <p class="footerKicker">Deccan Midwest Supply Co.</p>
+        <strong>Enterprise essentials.<br>Sourced smarter.</strong>
+        <p>Packaging, facility and shipping programs built for buyers who need dependable supply and commercial clarity.</p>
+        <div class="footerActions"><a class="footerAction" href="products.html">View product catalog</a><a class="footerAction secondary" href="custom-packaging/quote.html">Request a quote</a></div>
+      </div>
+    </div>
+    <div class="footGroups">
+      <div><small>Explore</small><a href="products.html">Product Catalog</a><a href="browse-items.html">Browse Items</a><a href="#custom">Custom Packaging</a><a href="#network">Sourcing Network</a></div>
+      <div><small>Company</small><a href="#story">Our Story</a><a href="#sectors">Industries</a><a href="#standards">Quality &amp; Compliance</a><a href="careers.html">Careers</a><a href="mailto:hello@deccanmidwest.com">Contact</a></div>
+      <div><small>Resources</small><a href="product-documentation.html">Product Documentation</a><a href="buying-guides.html">Buying Guides</a><a href="custom-packaging-guide.html">Custom Packaging Guide</a><a href="ordering-delivery.html">Ordering &amp; Delivery</a><a href="faqs.html">FAQs</a></div>
+      <div><small>Help &amp; Support</small><a href="custom-packaging/quote.html">Request a Quote</a><a href="product-help.html">Product Help</a><a href="order-support.html">Order Support</a><a href="shipping-delivery.html">Shipping &amp; Delivery</a><a href="returns-claims.html">Returns &amp; Claims</a><a href="contact-support.html">Contact Support</a></div>
+      <div class="socialContact"><small>Connect</small><a href="#" aria-label="LinkedIn">LinkedIn</a><a href="mailto:hello@deccanmidwest.com">Email</a><a href="mailto:hello@deccanmidwest.com">General Inquiries</a></div>
+    </div>
+  </div>
+  <div class="footerBottom"><span>© 2026 Deccan Midwest Supply Co. All rights reserved.</span><span>Global sourcing • Local impact</span></div>
+</footer>
+</div>
+
+<div class="modal" id="quoteModal">
+  <div class="modalCard">
+    <div class="modalTop"><div><p class="eyebrow">WHOLESALE ACCESS</p><h3>Request a commercial quote.</h3></div><button class="close" id="closeModal">×</button></div>
+    <form id="quoteForm">
+      <div class="formGrid">
+        <div class="field"><label>COMPANY</label><input required name="company"></div>
+        <div class="field"><label>CONTACT NAME</label><input required name="name"></div>
+        <div class="field"><label>WORK EMAIL</label><input required type="email" name="email"></div>
+        <div class="field"><label>PHONE</label><input name="phone"></div><div class="field"><label>INDUSTRY</label><select name="industry"><option>Restaurant / Foodservice</option><option>Hospitality / Catering</option><option>Commercial Facility</option><option>Distributor / Reseller</option><option>Other</option></select></div><div class="field"><label>DELIVERY ZIP CODE</label><input name="zip" inputmode="numeric"></div>
+        <div class="field"><label>PRODUCT CATEGORY</label><select id="quoteCategory" name="category"><option>Cups, Lids & Drinkware</option><option>Food Containers & Takeout</option><option>Bags & Custom Packaging</option><option>Gloves & Protective Apparel</option><option>Cutlery & Tableware</option><option>Wraps, Foil & Food Storage</option><option>Paper & Janitorial</option><option>Cleaning Chemicals</option><option>Waste Management</option><option>Packaging & Shipping</option></select></div>
+        <div class="field"><label>EST. MONTHLY SPEND</label><select name="spend"><option>Under $1,000</option><option>$1,000–$5,000</option><option>$5,000–$15,000</option><option>$15,000–$30,000</option><option>$30,000+</option></select></div><div class="field"><label>PURCHASE FREQUENCY</label><select name="frequency"><option>One-time / Trial</option><option>Weekly</option><option>Biweekly</option><option>Monthly</option><option>Quarterly</option></select></div><div class="field"><label>EST. QUANTITY / CASES</label><input name="quantity"></div>
+        <div class="field full"><label>REQUIREMENT / SKUS / DELIVERY LOCATION</label><textarea name="details"></textarea></div>
+      </div>
+      <button class="submit" type="submit">Submit Wholesale Inquiry</button>
+      <div class="success" id="successMsg">Inquiry captured in this preview. Connect this form to your CRM or email backend before launch.</div>
+    </form>
+  </div>
+</div>
+
+<div class="modal" id="careerModal">
+  <div class="modalCard">
+    <div class="modalTop"><div><p class="eyebrow">CAREERS</p><h3>Apply for a role.</h3></div><button class="close" id="closeCareerModal">×</button></div>
+    <form id="careerForm">
+      <div class="formGrid">
+        <div class="field"><label>ROLE</label><select id="careerRole" name="role"><option>Operations & Business Manager</option><option>B2B Sales & Business Development Executive</option><option>Procurement & Supply Chain Coordinator</option><option>Operations Support</option><option>Business Systems & Data Analyst</option><option>Warehouse & Inventory Associate</option><option>Other</option></select></div>
+        <div class="field"><label>FULL NAME</label><input required name="name"></div>
+        <div class="field"><label>EMAIL</label><input required type="email" name="email"></div>
+        <div class="field"><label>PHONE</label><input name="phone"></div><div class="field"><label>INDUSTRY</label><select name="industry"><option>Restaurant / Foodservice</option><option>Hospitality / Catering</option><option>Commercial Facility</option><option>Distributor / Reseller</option><option>Other</option></select></div><div class="field"><label>DELIVERY ZIP CODE</label><input name="zip" inputmode="numeric"></div>
+        <div class="field"><label>LOCATION</label><input name="location"></div>
+        <div class="field"><label>LINKEDIN / PORTFOLIO</label><input name="linkedin"></div>
+        <div class="field full"><label>WHY THIS ROLE / EXPERIENCE</label><textarea name="details"></textarea></div>
+      </div>
+      <button class="submit" type="submit">Submit Application</button>
+      <div class="success" id="careerSuccess">Application captured in this preview. Connect this form to your hiring email or ATS before launch.</div>
+    </form>
+  </div>
+</div>
+
+<script>
+const intro=document.getElementById('intro');
+const site=document.getElementById('site');
+function reveal(){
+  if(site.classList.contains('ready')) return;
+  intro.classList.add('hide');
+  site.classList.add('ready');
+  document.body.classList.remove('lock');
+  sessionStorage.setItem('dmIntroSeen','1');
+}
+document.getElementById('openCargo').onclick=reveal;
+document.getElementById('skipIntro').onclick=reveal;
+document.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&!site.classList.contains('ready')) reveal()});
+if(sessionStorage.getItem('dmIntroSeen') || window.location.hash === '#home') reveal();
+
+const data={
+drinkware:[
+["Hot & Cold Cups","Commercial cup formats for beverage service programs.",["PAPER / PLASTIC OPTIONS","CASE PACK","LIDS AVAILABLE"],"roll"],
+["Cup Lids","Flat, dome and sip-through lid options matched to compatible cup lines.",["MATCHED FIT","BULK CASE","FOODSERVICE"],""],
+["Straws & Stirrers","High-use beverage service accessories for restaurants and hospitality.",["WRAPPED OPTIONS","BULK","FOODSERVICE"],""],
+["Portion Cups","Soufflé and portion formats for sauces, samples and prep.",["LIDS AVAILABLE","FOOD CONTACT*","CASE PACK"],""]],
+takeout:[
+["Takeout Containers","Clamshell and hinged formats for hot, cold and prepared foods.",["MULTIPLE MATERIALS","STACKABLE","FOOD CONTACT*"],""],
+["Deli Containers","Clear container and lid systems for prepared food, deli and grab-and-go.",["LID OPTIONS","FOOD CONTACT*","CASE PACK"],""],
+["Bakery & Pizza Boxes","Paperboard packaging for bakery, pizza and prepared-food operations.",["PRINT OPTIONS*","FOODSERVICE","BULK"],"bag"],
+["Food Storage Tubs","Back-of-house storage formats for prep and ingredient management.",["COMMERCIAL","LIDS","REUSABLE OPTIONS"],""]],
+bags:[
+["Custom Takeout Bags","Printed carryout programs developed around your artwork and volume.",["CUSTOM PRINT","MOQ APPLIES","BULK CASE"],"bag"],
+["Thank You Bags","High-use plastic carryout bags for restaurant and retail operations.",["STOCK PRINT","MULTIPLE SIZES","BULK"],"bag"],
+["Paper Carryout Bags","Kraft and handled paper formats for foodservice and retail.",["CUSTOM OPTIONS*","PAPER","BULK"],"bag"],
+["Food-Grade Poly Bags","Clear bag formats for food handling, storage and operational use.",["FOOD CONTACT*","MULTIPLE GAUGES","CASE PACK"],"bag"]],
+gloves:[
+["Nitrile Gloves","Powder-free disposable glove options for foodservice and facility use.",["LATEX-FREE","POWDER-FREE","FOOD CONTACT OPTIONS*"],"glove"],
+["Poly Gloves","Economical disposable glove formats for frequent food handling tasks.",["LATEX-FREE","ONE-SIZE OPTIONS","BULK PACK"],"glove"],
+["Hairnets & Beard Covers","Disposable hygiene protection for kitchen and production teams.",["NON-WOVEN","HYGIENE","BULK"],""],
+["Disposable Aprons","Single-use protection for foodservice and light facility tasks.",["PE OPTIONS","LIGHTWEIGHT","BULK"],"bag"]],
+tableware:[
+["Plastic Cutlery","Fork, spoon and knife programs for takeaway and institutional service.",["WRAPPED OPTIONS","HEAVYWEIGHT OPTIONS","BULK"],""],
+["Compostable Cutlery","Alternative material serviceware options where commercially appropriate.",["COMPOSTABLE OPTIONS*","FOODSERVICE","CASE PACK"],""],
+["Napkins & Dispensers","Beverage, dinner and dispenser napkin formats for commercial service.",["PAPER","MULTIPLE FOLDS","BULK"],"roll"],
+["Plates & Bowls","Paper, fiber and plastic options across common commercial sizes.",["MULTIPLE MATERIALS","FOODSERVICE","CASE PACK"],""]],
+wraps:[
+["Aluminum Foil","Standard and heavy-duty foil formats for prep, hold and transport.",["STANDARD / HEAVY DUTY","FOODSERVICE","BULK"],"roll"],
+["Plastic / Cling Film","Commercial food wrap rolls for back-of-house preparation and storage.",["FOODSERVICE","ROLL FORMATS","CASE PACK"],"roll"],
+["Parchment & Wax Paper","Sheet and roll formats for baking, prep and wrapping applications.",["PAPER","FOODSERVICE","MULTIPLE SIZES"],"roll"],
+["Food Storage Bags","Freezer, zipper and commercial poly bag formats.",["MULTIPLE SIZES","FOOD CONTACT*","BULK"],"bag"]],
+paper:[
+["Paper Towels","Commercial roll and folded towel formats for kitchen and facility use.",["JANITORIAL","CASE PACK","DISPENSER OPTIONS"],"roll"],
+["Toilet Tissue","Commercial tissue formats for facility and hospitality programs.",["FACILITY","BULK CASE","MULTIPLE PLY"],"roll"],
+["Cleaning Cloths","Wiping formats for kitchens, counters and general maintenance.",["JANITORIAL","COLOR OPTIONS","BULK"],""],
+["Tray Liners & Placemat Paper","Disposable paper formats for foodservice presentation and cleanup.",["FOODSERVICE","PAPER","CUSTOM OPTIONS*"],""]],
+chemicals:[
+["Dishwashing Chemicals","Commercial cleaning chemistry sourced for applicable operational programs.",["SDS AVAILABLE*","COMMERCIAL","PROGRAM BASED"],""],
+["Surface Cleaners","General commercial surface-cleaning options for facility programs.",["SDS AVAILABLE*","FACILITY","MULTIPLE FORMATS"],""],
+["Degreasers","Back-of-house and facility degreasing options for applicable use cases.",["SDS AVAILABLE*","COMMERCIAL","BULK OPTIONS"],""],
+["Sanitation Products","Selected sanitation and hygiene products based on customer requirements.",["DOCUMENTATION*","FACILITY","PROGRAM BASED"],""]],
+waste:[
+["Can Liners","Commercial trash liner formats by capacity, gauge and load profile.",["CORELESS OPTIONS","MULTIPLE GAUGES","BULK"],"bag"],
+["High-Density Liners","Economical liner formats for lighter waste streams.",["HDPE","FACILITY","CASE PACK"],"bag"],
+["Low-Density Liners","Stronger liner options for heavier or irregular waste loads.",["LDPE","HEAVY DUTY OPTIONS","BULK"],"bag"],
+["Waste Bags by Capacity","Programs organized around common bin sizes and operational load needs.",["MULTIPLE SIZES","FACILITY","BULK"],"bag"]],
+shipping:[
+["Corrugated Boxes","Shipping cartons and case formats for commercial fulfillment.",["MULTIPLE SIZES","CORRUGATED","BULK"],""],
+["Packing Tape","Carton-sealing tape formats for warehouse and shipping operations.",["WAREHOUSE","MULTIPLE WIDTHS","CASE PACK"],"roll"],
+["Stretch / Shrink Wrap","Pallet and bundle wrapping materials for distribution operations.",["WAREHOUSE","ROLL FORMATS","BULK"],"roll"],
+["Labels & Void Fill","Selected warehouse consumables for packing, identification and protection.",["SHIPPING","PROGRAM BASED","BULK"],""]]
+};
+const grid=document.getElementById('productGrid');
+function render(cat){
+  grid.innerHTML=data[cat].map(x=>`<article class="card"><div class="productArt"><div class="shape ${x[3]}"></div></div><h3>${x[0]}</h3><p>${x[1]}</p><div class="badges">${x[2].map(b=>`<span>${b}</span>`).join('')}</div></article>`).join('');
+}
+render('drinkware');
+document.querySelectorAll('.filter').forEach(b=>b.onclick=()=>{document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));b.classList.add('active');render(b.dataset.cat)});
+
+const route=document.getElementById('route'),dot=document.getElementById('routePulse');
+let len=route.getTotalLength(),t=0;
+(function routeAnim(){t=(t+.0015)%1;let p=route.getPointAtLength(len*t);dot.setAttribute('cx',p.x);dot.setAttribute('cy',p.y);requestAnimationFrame(routeAnim)})();
+
+document.querySelectorAll('.sector').forEach(b=>b.onclick=()=>{document.querySelectorAll('.sector').forEach(x=>x.classList.remove('active'));b.classList.add('active')});
+
+const modal=document.getElementById('quoteModal');
+const careerModal=document.getElementById('careerModal');
+const careerRole=document.getElementById('careerRole');
+
+const quoteCategory=document.getElementById('quoteCategory');
+function categoryLabel(cat){const m={drinkware:'Cups, Lids & Drinkware',takeout:'Food Containers & Takeout',bags:'Bags & Custom Packaging',gloves:'Gloves & Protective Apparel',tableware:'Cutlery & Tableware',wraps:'Wraps, Foil & Food Storage',paper:'Paper & Janitorial',chemicals:'Cleaning Chemicals',waste:'Waste Management',shipping:'Packaging & Shipping'};return m[cat]||cat;}
+function openQuoteFor(product,cat){if(cat && quoteCategory) quoteCategory.value=categoryLabel(cat); if(product){const ta=document.querySelector('#quoteForm textarea[name=details]');ta.value='Product: '+product+'\n'+ta.value;} modal.classList.add('open');}
+document.querySelectorAll('.openQuote').forEach(b=>b.onclick=e=>{e.preventDefault(); if(b.dataset.category && quoteCategory) quoteCategory.value=b.dataset.category; modal.classList.add('open')});
+document.getElementById('closeModal').onclick=()=>modal.classList.remove('open');
+modal.onclick=e=>{if(e.target===modal) modal.classList.remove('open')};
+
+document.querySelectorAll('.jobApply').forEach(btn=>{
+  btn.onclick=e=>{
+    e.preventDefault();
+    const role=btn.dataset.role || 'General Application';
+    careerRole.value=role;
+    document.querySelector('#careerModal h3').textContent='Apply for '+role+'.';
+    careerModal.classList.add('open');
+  };
+});
+
+document.getElementById('closeCareerModal').onclick=()=>careerModal.classList.remove('open');
+careerModal.onclick=e=>{if(e.target===careerModal) careerModal.classList.remove('open')};
+
+document.getElementById('quoteForm').onsubmit=e=>{e.preventDefault();document.getElementById('successMsg').classList.add('show')};
+document.getElementById('careerForm').onsubmit=e=>{e.preventDefault();document.getElementById('careerSuccess').classList.add('show')};
+</script>
+</body>
+</html>
